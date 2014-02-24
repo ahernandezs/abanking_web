@@ -7,7 +7,7 @@
         <h1>Cuentas</h1>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-info btn-alert pull-right">
+        <button type="button" class="btn btn-info btn-alert pull-right" ng-click="initPubNub()">
           <span class="glyphicon glyphicon-phone"></span>
           alertas
         </button>
@@ -41,7 +41,7 @@
               <div class="radio">
                 <label>
                   <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio2" value="minimal">
-                  Pago mínimo
+                  Pago mínimobalance
                   <span class="pull-right amount">{{account.balance.min_payment | currency}}</span>
                 </label>
               </div>
