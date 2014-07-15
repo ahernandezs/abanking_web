@@ -32,7 +32,7 @@ angular.module('spaApp')
     }).
       error(function(data, status) {
       //put an error message in the scope
-      $scope.errorMessage = data.message;
+      $scope.errorMessage = data;
       $scope.status = status;
     });
 

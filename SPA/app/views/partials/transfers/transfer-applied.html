@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-12">
           <p>Cuenta de dep&oacute;sito:</p>
-          &nbsp <label for="">{{beneficiary.current.alias}} - {{beneficiary.current.currency}} - {{beneficiary.current.lastdigits}}</label>
+          &nbsp <label for="">{{beneficiary.current.beneficiary_name}}, {{beneficiary.current.issuer_name}} ***{{beneficiary.current.number}}</label>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-md-12">
           <p>Cuenta de retiro:</p>
-          &nbsp <label for="">{{account.name}} {{account.last_digits}}</label>
+          &nbsp <label for="">{{currentAccount.name}} {{currentAccount.last_digits}}</label>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col-md-7">
           <p>Saldo actual:</p>
-          &nbsp <label for="">{{account.balance.current | currency}}</label>
+          &nbsp <label for="">{{currentAccount.balance.current | currency}}</label>
         </div>
         <div class="col-md-5">
           <p>Fecha:</p>

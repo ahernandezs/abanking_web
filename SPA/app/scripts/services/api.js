@@ -15,7 +15,7 @@ angular.module('spaApp').factory('api', ['$http', '$rootScope', function ($http,
       console.log("Executes init & token = " + $rootScope.session_token);
     },
     config: function(){
-      $rootScope.restAPIBaseUrl = "http://projects.anzen.com.mx:8081/Abanking-Core/rest";
+      $rootScope.restAPIBaseUrl = "http://abanking-api.herokuapp.com";
       //$rootScope.restAPIBaseUrl = "http://localhost:8080/Abanking-Core/rest";
       $rootScope.subscribeKey = "sub-c-74d472c2-894a-11e3-a56b-02ee2ddab7fe";
       $rootScope.publishKey = "pub-c-d49c709c-8d0c-40ed-aaa6-66cbc20683d0";

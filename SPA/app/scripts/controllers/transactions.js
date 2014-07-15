@@ -190,7 +190,7 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
 
     thirdAccountProvider.getThirdAccounts().then(
       function(data){
-        $scope.beneficiaries = $rootScope.thirdAccounts.beneficiaries;
+        $scope.beneficiaries = $rootScope.thirdAccounts.externalaccounts;
       }
     );
 

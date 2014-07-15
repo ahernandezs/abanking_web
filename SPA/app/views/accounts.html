@@ -75,7 +75,7 @@
 
           <div ng-if="account.account_type == 'SAVINGS' || account.account_type == 'CHECKS' || account.account_type == 'DEBIT_CARD'">
             <div class="row date-section text-center">
-              Desde {{account.balance.from | date:'longDate'}}
+              Desde {{account.balance.created_at | date:'longDate'}}
             </div>
 
             <div class="amounts-section">
@@ -84,7 +84,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 pull-left">
-                  Dep&oacute;sitos:
+                  <span ng-show="account.balance.deposits">Dep&oacute;sitos:</span>
                 </div>
                 <div class="col-md-6 pull-right amount">
                   {{account.balance.deposits | currency}}
@@ -92,7 +92,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 pull-left">
-                  Pagos:
+                  <span ng-show="account.balance.payments">Pagos:</span>
                 </div>
                 <div class="col-md-6 pull-right amount">
                   {{account.balance.payments | currency}}
@@ -100,7 +100,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 pull-left">
-                  Retiros:
+                  <span ng-show="account.balance.withdrawals">Retiros:</span>
                 </div>
                 <div class="col-md-6 pull-right amount">
                   {{account.balance.withdrawals | currency}}
