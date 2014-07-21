@@ -1,94 +1,95 @@
 <div class="right-section">
 
-  <div ng-show="token">
-    <div class="submenu-yellow">
-      <h5>
-        <span class="glyphicon glyphicon-phone pull-left"></span>
-        &nbsp
-        Tel&eacute;fono no disponible
-        <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
-      </h5>
-    </div>
+  <form name="paymentForm">
+    <div ng-show="token">
+      <div class="submenu-yellow">
+        <h5>
+          <span class="glyphicon glyphicon-phone pull-left"></span>
+          &nbsp
+          Ingresa tu clave din&aacute;mica
+          <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        </h5>
+      </div>
 
-    <div class="yellow-message">
-      <p>Ingresa manualmente tu clave din&aacute;mica</p>
-      <div class="row">
-        <div class="col-md-8">
-          <div class="input-group">
-            <span class="input-group-addon">23456789</span>
-            <input type="password" class="form-control"/>
+      <div class="yellow-message">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="input-group">
+              <input name="dynamic_password" type="password" class="form-control" ng-class="{'alert-error' : transfer.error}" ng-model="transfer.dynamic_password" ng-minlength="6" ng-maxlength="6" required/>
+            </div>
+            <p class="alert-error-p" ng-show="transfer.error">{{transfer.error.message}}</p>
+          </div>
+          <div class="col-md-4 pull-right">
+            <button ng-click="applyTransferPayment()" type="button" class="btn btn-info" ng-disabled="transfer.sending || !paymentForm.dynamic_password.$valid">{{ transfer.sending ? 'Enviando ...' : 'Confirmar' }}</button>
           </div>
         </div>
-        <div class="col-md-4 pull-right">
-          <button ng-click="applyTransferPayment()" type="button" class="btn btn-info">Confirmar</button>
+
+      </div>
+    </div>
+
+    <div ng-show="!token">
+      <div class="submenu-yellow">
+        <h5>
+          <span class="glyphicon glyphicon-phone pull-left"></span>
+          &nbsp
+          Obteniendo token
+          <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        </h5>
+      </div>
+
+      <div class="yellow-message">
+        <img class="pull-right" src="/images/orange-ajax-loader.gif">
+        <p>Se ha enviado una solicitud de autorizaci&oacute;n a su dispositivo m&oacute;vil, favor de aprobarla</p>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <p>Cuenta de dep&oacute;sito</p>
+      <br />
+      <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
+        <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
+      </select>
+
+    </div>
+
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-8">
+          <p>Importe:</p>
+          <input type="text" class="form-control input-sm" placeholder="Monto" ng-model="transfer.amount">
         </div>
-      </div>
+        <div class="col-md-4">
+          <p>
+          <span class="glyphicon glyphicon-calendar"></span>
+          Fecha:
+          </p>
 
-    </div>
-  </div>
-
-  <div ng-show="!token">
-    <div class="submenu-yellow">
-      <h5>
-        <span class="glyphicon glyphicon-phone pull-left"></span>
-        &nbsp
-        Obteniendo token
-        <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
-      </h5>
-    </div>
-
-    <div class="yellow-message">
-      <img class="pull-right" src="/images/orange-ajax-loader.gif">
-      <p>Se ha enviado una solicitud de autorizaci&oacute;n a su dispositivo m&oacute;vil, favor de aprobarla</p>
-    </div>
-  </div>
-
-  <div class="side-block">
-    <p>Cuenta de dep&oacute;sito</p>
-    <br />
-    <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
-      <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
-    </select>
-
-  </div>
-
-  <div class="side-block">
-    <div class="row">
-      <div class="col-md-8">
-        <p>Importe:</p>
-        <input type="text" class="form-control input-sm" placeholder="Monto" ng-model="transfer.amount">
-      </div>
-      <div class="col-md-4">
-        <p>
-        <span class="glyphicon glyphicon-calendar"></span>
-        Fecha:
-        </p>
-
-        <input type="text" class="form-control input-sm" placeholder="Fecha" ng-model="transfer.date">
-      </div>
-    </div>
-  </div>
-
-  <div class="side-block">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label>
-            <input type="checkbox" ng-model="transfer.sendmail"/> Notificar al beneficiario
-          </label>
+          <input type="text" class="form-control input-sm" placeholder="Fecha" ng-model="transfer.date">
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="side-block" ng-show="transfer.sendmail">
-    <div class="row">
-      <div class="col-md-12">
-        <p>Mensaje:</p>
-        <textarea class="form-control input-sm" rows="4" ng-model="transfer.message">
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <input type="checkbox" ng-model="transfer.sendmail"/> Notificar al beneficiario
+            </label>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
+    <div class="side-block" ng-show="transfer.sendmail">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Mensaje:</p>
+          <textarea class="form-control input-sm" rows="4" ng-model="transfer.message">
+        </div>
+      </div>
+    </div>
+
+  </form>
 
 </div>

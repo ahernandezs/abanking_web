@@ -593,6 +593,20 @@ body, html, #mainDiv {
       background-color: #0bd5a5;
       border-color: #0bd5a5;
     }
+
+  .alert-error {
+    border: 1px dashed #FA787E;
+  }
+
+  p.alert-error-p {
+    color: #FA787E;
+    font-size: 11px;
+    margin-left: 10px;
+  }
+
+  .vip-loader {
+    margin: -35px -10px 0px 0px;
+  }
 }
 
 .savings {
@@ -743,14 +757,8 @@ input.input-box{
    height:48px;
 }
 
-.ng-invalid.ng-dirty{
-    border-color: #FA787E;
-}
-
-.ng-valid.ng-dirty{
-    border-color: #78FA89;
-}
-
 .submenu-blue.transfer{
     overflow:hidden;
 }
+
+

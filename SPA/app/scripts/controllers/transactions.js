@@ -220,15 +220,32 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
   
   $scope.showTransferPaymentToken = function() {
     $scope.selection = 'transferspaymenttoken';
-    $scope.token = undefined;
+    $scope.token = true;
 
-    $timeout( function() {
-      $scope.token = true;
-    },2000);
   }
 
   $scope.applyTransferPayment = function() {
-    $scope.selection = 'applytransferpayment';
+    $scope.transfer.sending = true;
+    var data = {
+      origin: $scope.currentAccount._account_id,
+      target: $scope.beneficiary.current._account_id,
+      amount: $scope.transfer.amount,
+      otp: $scope.transfer.dynamic_password,
+      message: $scope.transfer.message
+    };
+
+    thirdAccountProvider.postThirdAccountPayment(data).success(function(data, status, headers) {
+      console.log("Success transfering");
+      $scope.transfer.sending = false;
+      $scope.selection = 'applytransferpayment';
+    }).error(function(data, status) {
+      console.log("Error transfering", data);
+      $scope.transfer.sending = false;
+      $scope.transfer.error = {
+        message: data.message
+      };
+    });
+
   }
 
   $scope.showAddBeneficiary = function() {

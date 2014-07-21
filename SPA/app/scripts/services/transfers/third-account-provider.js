@@ -51,6 +51,10 @@ angular.module('spaApp')
             return deferred.reject('Error updating third account');
         })
         return deferred.promise;
+      },
+
+      postThirdAccountPayment: function(data) {
+        return thirdAccountService.thirdAccountPayment(data);
       }
 
     }

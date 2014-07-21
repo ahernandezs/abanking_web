@@ -40,4 +40,18 @@ angular.module('spaApp')
 				//,headers: {'Content-Type': 'application/json','X-AUTH-TOKEN': $http.defaults.headers.common['X-AUTH-TOKEN']}
 		});
 	}
+
+  this.thirdAccountPayment = function(data) {
+    return $http({
+      url: $rootScope.restAPIBaseUrl + '/externalaccounts/' + data.target + '/payments',
+      method: 'POST',
+      data: JSON.stringify({
+					account: data.origin,
+					amount: parseFloat(data.amount),
+          description: 'Transferencia terceros',
+          credential_id: '',
+					dynamic_password: data.otp
+				})
+    });
+  }
 }]);
