@@ -11,13 +11,9 @@ body, html, #mainDiv {
     color:#434040;
 }
 //VARS
-$primary-color:#1d6caf;
-$secondary-color:#00c992;
-$aux-color:#ff7726;
-
-$primary-button-bottom: #10548e;
-$secondary-button-bottom: #02ab7d;
-$aux-button-bottom: #e26419;
+$primary-color:#a82024;
+$secondary-color:#351715;
+$aux-color:#e63b31;
 
 //MIXINS
 @mixin border_radius($radius: 10px) {
@@ -69,10 +65,10 @@ $aux-button-bottom: #e26419;
   -webkit-font-smoothing:antialiased;
 }
 .btn-info{
-  @include gradient_top_bottom($secondary-color, $secondary-button-bottom);
+  background:$aux-color;
 }
 .btn-info:hover, .btn-info:active{
-  @include gradient_top_bottom($secondary-button-bottom, $secondary-color);
+  background:$primary-color;
 }
 .btn-default{
   border:1px solid #cccccc;
@@ -139,13 +135,13 @@ $aux-button-bottom: #e26419;
             width: 100%;
         }
         .btn{
-          @include gradient_top_bottom($primary-color, $primary-button-bottom);
+          background:$aux-color;
           color:white;
           margin:10px 0;
           width: 100%;
         }
         .btn:hover, .btn:active{
-          @include gradient_top_bottom($primary-button-bottom, $primary-color);
+          background:$primary-color;
         }
         input[type="checkbox"] {
             width: 12px!important;
@@ -206,7 +202,7 @@ $aux-button-bottom: #e26419;
   background:white;
   padding: 7px 10px;
   margin:13px 10px 0 0;
-  border-bottom:1px solid $primary-button-bottom;
+  border-bottom:1px solid $primary-color;
 }
 .btn-alertas:hover{
   background:#efefef;
@@ -231,7 +227,7 @@ $aux-button-bottom: #e26419;
     width: auto;
     height: 60px;
     border:none;
-    @include gradient_top_bottom($primary-color, $primary-button-bottom);
+    background:$primary-color;
     @include border_radius(0);
 
     .bank-logo {
@@ -265,6 +261,11 @@ $aux-button-bottom: #e26419;
         color: white;
         opacity:1;
     }
+    .nav.user a strong.caret, nav.user a:hover strong.caret{
+        opacity:1;
+        border-top-color:white;
+        border-bottom-color:white;
+    }
 
     .nav a:hover {
         color: rgba(255,255,255,0.8);
@@ -275,12 +276,12 @@ $aux-button-bottom: #e26419;
         padding:7px 10px;
         margin-top:13px;
         color:white;
-        @include gradient_top_bottom($aux-color, $aux-button-bottom);
-        border-bottom:1px solid $primary-button-bottom;
+        background:$aux-color;
+        border-bottom:1px solid $primary-color;
     }
 
     .btn-logout:hover, .btn-logout:active {
-       @include gradient_top_bottom($aux-button-bottom, $aux-color);
+       background:$aux-color;
     }
 
     .user .dropdown-menu {
@@ -564,14 +565,14 @@ section.scroll > .scroll{
         }
         .btn{
               float: left;
-              background:rgba(0, 201, 146, 0.6);
+              background:rgba(169, 38, 34, 0.6);
               color:white;
               margin: 0 5px;
               padding: 7px;
               @include border_radius(3px);
         }
         .btn:hover, .btn:active{
-          background:rgba(0, 201, 146, 0.8);
+          background:rgba(169, 38, 34, 0.8);
         }
     }
 }
@@ -745,8 +746,10 @@ section.scroll > .scroll{
     }
 
     .btn-success {
-      background-color: #0bd5a5;
-      border-color: #0bd5a5;
+      background:$aux-color;
+    }
+    .btn-success:active,.btn-success:hover{
+      background:$primary-color;
     }
 }
 
