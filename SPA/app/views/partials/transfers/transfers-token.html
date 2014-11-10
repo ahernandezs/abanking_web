@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-md-8">
             <div class="input-group">
-              <input name="dynamic_password" type="password" class="form-control" ng-class="{'alert-error' : transfer.error}" ng-model="transfer.dynamic_password" ng-minlength="6" ng-maxlength="6" required/>
+              <input name="dynamic_password" type="password" class="form-control" ng-class="{'alert-error' : transfer.error}" ng-model="transfer.dynamic_password" ng-minlength="6" ng-maxlength="6" maxlength="6" required/>
             </div>
             <p class="alert-error-p" ng-show="transfer.error">{{transfer.error.message}}</p>
           </div>
