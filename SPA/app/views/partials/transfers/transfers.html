@@ -22,7 +22,7 @@
     Cuenta de dep&oacute;sito:
   </p>
 
-  <select class="form-control" ng-model="beneficiary.current" ng-options="a.alias + ' - ' + a.currency + ' - ' + a.lastdigits for a in beneficiaries" ng-change="updateTransfer()">
+  <select class="form-control" ng-model="thirdAccount.current" ng-options="thirdAccount.alias + ' - ' + thirdAccount.currency + ' - ' + thirdAccount.lastdigits for thirdAccount in thirdAccounts" ng-change="updateTransfer()">
     <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
   </select>
 </div>
