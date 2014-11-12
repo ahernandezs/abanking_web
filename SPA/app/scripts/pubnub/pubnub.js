@@ -1,6 +1,6 @@
 'use strict'
 
-app.run(['$rootScope', 'PubNub', 'accountsProvider', function ($rootScope, PubNub, accountsProvider) {
+app.run(['$rootScope', '$timeout', 'PubNub', 'accountsProvider', function ($rootScope, $timeout, PubNub, accountsProvider) {
 
     //conectando a PubNub
     var joinPubNub = function () {
@@ -23,8 +23,20 @@ app.run(['$rootScope', 'PubNub', 'accountsProvider', function ($rootScope, PubNu
         //making callback
         $rootScope.$on(PubNub.ngMsgEv($rootScope.pubNubChannel), function (event, payload) {
             var messageType = payload.message.messageType;
+            console.log('Payload =>', payload);
             if (messageType == 'transaction') {
                accountsProvider.addNewTransaction(payload.message.user, payload.message.transaction, payload.message.account);
+            }
+            if (messageType == 'online') {
+              $rootScope.$broadcast('pubnubMessageReceived', payload.message); 
+              //if(payload.message.status === 'ACCEPTED') {
+              //  $rootScope.$broadcast('pubnubMessageReceived', payload.message); 
+
+              //  //$timeout.cancel($rootScope.onlineTransaction);
+              //  //console.log("Try to broadcast");
+              //} else {
+              //  console.log("Operation was rejected");
+              //}
             }
 
         });

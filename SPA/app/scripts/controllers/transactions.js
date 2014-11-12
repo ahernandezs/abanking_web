@@ -221,9 +221,42 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
   
   $scope.showTransferPaymentToken = function() {
     $scope.selection = 'transferspaymenttoken';
-    $scope.token = true;
+    $scope.token = false;
 
+    $scope.transfer.sending = true;
+    var data = {
+      origin: $scope.currentAccount._account_id,
+      target: $scope.beneficiary.current._account_id,
+      amount: $scope.transfer.amount
+    };
+
+    thirdAccountProvider.postThirdAccountPaymentVerify(data).success(function(data, status, headers) {
+      console.log("Sending verification");
+      $scope.transfer.sending = false;
+      //$scope.selection = 'applytransferpayment';
+    }).error(function(data, status) {
+      console.log("Error transfering", data);
+      $scope.transfer.sending = false;
+      $scope.transfer.error = {
+        message: data.message
+      };
+    });
+
+
+    $scope.onlineTransaction = $timeout( function() {
+      $scope.token = true;
+    }, 90000);
   }
+
+  $scope.$on('pubnubMessageReceived', function(event, message) {
+    console.log("pubnub message received in project controller",message);
+    if(message.status === "ACCEPTED") {
+      // The message is for me!! Do something with it
+      $timeout.cancel($scope.onlineTransaction);
+      $scope.selection = 'applytransferpayment';
+    } else {
+    }
+  });
 
   $scope.applyTransferPayment = function() {
     $scope.transfer.sending = true;

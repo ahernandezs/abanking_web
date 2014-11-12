@@ -15,10 +15,10 @@ angular.module('spaApp').factory('api', ['$http', '$rootScope', function ($http,
       console.log("Executes init & token = " + $rootScope.session_token);
     },
     config: function(){
-      $rootScope.restAPIBaseUrl = "http://abanking-api.herokuapp.com";
-      //$rootScope.restAPIBaseUrl = "http://localhost:8080/Abanking-Core/rest";
-      $rootScope.subscribeKey = "sub-c-74d472c2-894a-11e3-a56b-02ee2ddab7fe";
-      $rootScope.publishKey = "pub-c-d49c709c-8d0c-40ed-aaa6-66cbc20683d0";
+      //$rootScope.restAPIBaseUrl = "http://abanking-api.herokuapp.com";
+      $rootScope.restAPIBaseUrl = "http://localhost:9001";
+      $rootScope.publishKey = "pub-c-90b1707f-26e4-4c7a-bbe4-79e695283d79";
+      $rootScope.subscribeKey = "sub-c-439ead5e-8935-11e3-baad-02ee2ddab7fe";
     }
   };
 }]);

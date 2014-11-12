@@ -55,7 +55,10 @@ angular.module('spaApp')
 
       postThirdAccountPayment: function(data) {
         return thirdAccountService.thirdAccountPayment(data);
-      }
+      },
 
+      postThirdAccountPaymentVerify: function(data) {
+        return thirdAccountService.thirdAccountPaymentVerify(data);
+      }
     }
   }]);

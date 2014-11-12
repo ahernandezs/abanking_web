@@ -31,7 +31,7 @@ angular.module('spaApp')
 				method: 'DELETE'
 				//,headers: {'Content-Type': 'application/json','X-AUTH-TOKEN': $http.defaults.headers.common['X-AUTH-TOKEN'] }
 		});
-	}
+	},
 
 	this.deleteThirdAccount = function(thirdAccountID){
 		return $http({
@@ -39,7 +39,7 @@ angular.module('spaApp')
 				method: 'PUT'
 				//,headers: {'Content-Type': 'application/json','X-AUTH-TOKEN': $http.defaults.headers.common['X-AUTH-TOKEN']}
 		});
-	}
+	},
 
   this.thirdAccountPayment = function(data) {
     return $http({
@@ -51,6 +51,18 @@ angular.module('spaApp')
           description: 'Transferencia terceros',
           credential_id: '',
 					dynamic_password: data.otp
+				})
+    });
+  },
+
+  this.thirdAccountPaymentVerify = function(data) {
+    return $http({
+      url: $rootScope.restAPIBaseUrl + '/externalaccounts/' + data.target + '/payments/verify',
+      method: 'POST',
+      data: JSON.stringify({
+					account: data.origin,
+					amount: parseFloat(data.amount),
+          description: 'Transferencia terceros verificacion'
 				})
     });
   }
