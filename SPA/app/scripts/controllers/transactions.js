@@ -105,6 +105,7 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
   $scope.close = function() {
     $scope.selection = undefined;
     $scope.currentTransaction = undefined;
+    $('.pull-right .btn').removeClass('active');
   }
 
   $scope.showServices = function() {

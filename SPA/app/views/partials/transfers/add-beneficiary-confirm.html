@@ -1,11 +1,26 @@
 <div class="right-section" >
 	<div class="submenu-green">
-		 <h5>El beneficiario ha sido dado de alta: 
-		   <span ng-click="close()" class="glyphicon glyphicon-remove pull-right alose-button"></span>
+		 <h5><span class="pull-left iApprobed"></span>The beneficiary has been added
+		   <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right alose-button"></span>-->
 		 </h5>
 	</div>
   	<form>
-	  <div class="side-block">
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.name" disabled> </input>
+  		</div>
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.clabe" disabled>
+  		</div>
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.amount" disabled>
+  		</div>
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.email" disabled>
+  		</div>
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.phone" disabled>
+  		</div>
+	  <!--<div class="side-block">
 	  	<p>Nombre:</p>
 	  	<input type="text" class="form-control input-normal" ng-model="benef.name" disabled> </input>
 	  	<br>
@@ -20,6 +35,6 @@
 	  	<br>
 	  	<p>Tel&eacute;fono Celular:</p>
 	  	<input type="text" class="form-control input-normal" ng-model="benef.phone" disabled>
-	  </div>
+	  </div>-->
 	</form>
 </div>

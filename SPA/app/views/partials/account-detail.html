@@ -1,46 +1,46 @@
 <div class="right-section-default">
 
   <div class="detail-header">
-    <h3>Detalle de cuenta:</h3>
-    {{currentAccount.name}} {{currentAccount.last_digits}}
+    <h3>Account detail:</h3>
+    <span class="pull-right">{{currentAccount.name}} {{currentAccount.last_digits}}</span>
   </div>
 
-  <div ng-if="currentAccount.account_type == 'CREDIT_CARD'">
-    <p>
-    Fecha de corte:
+  <div class="paddingCenter" ng-if="currentAccount.account_type == 'CREDIT_CARD'">
+    <p class="overflowH">
+    <strong>Balance date:</strong>
     <span class="pull-right">
       {{currentAccount.cut_date | date:'mediumDate'}}
     </span>
     </p>
 
     <div class="amounts-section">
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio1" value="current" checked>
-          Pago total
+          Total payment
           <span class="pull-right amount">{{currentAccount.balance.current | currency}}</span>
         </label>
       </div>
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio2" value="minimal">
-          Pago mínimo
+          Min payment
           <span class="pull-right amount">{{currentAccount.balance.min_payment | currency}}</span>
         </label>
       </div>
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio3" value="total">
-          Pago sin intereses
+          Whitout interest
           <span class="pull-right amount">{{currentAccount.balance.total_payment | currency}}</span>
         </label>
       </div>
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <div class="row">
             <div class="col-xs-6">
               <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio4" value="other">
-              Otra cantidad
+              Other amount
             </div>
             <div class="col-xs-6">
               <input type="text" class="form-control input-sm">
@@ -50,48 +50,49 @@
       </div>
     </div>
 
-    <div class="buttons">
-      <button class="btn btn-info btn-sm pull-right">Pagar tarjeta</button>
-    </div>
+    
   </div>
-
+<div class="paddingCenter">
+      <button class="btn btn-info btn-block">Card payment</button>
+    </div>
+    <div class="paddingCenter">
   <div ng-if="currentAccount.account_type == 'SAVINGS' || currentAccount.account_type == 'CHECKS' || currentAccount.account_type == 'DEBIT_CARD'">
     <p>
-    Desde {{currentAccount.balance.from | date:'longDate'}}
+    Since {{currentAccount.balance.from | date:'longDate'}}
     </p>
 
     <div class="amounts-section">
       <p>
-      Disponible:
-      <span class="pull-right amount">
+      Available:
+      <i class="pull-right">
         {{currentAccount.balance.current | currency}}
-      </span>
-    </div>
-    </p>
+      </i> </p>
+   
     <p>
-    Dep&oacute;sitos:
-    <span class="pull-right amount">
+    Deposits:
+    <i class="pull-right">
       {{currentAccount.balance.deposits | currency}}
-    </span>
+    </i>
     </p>
     <p>
-    Pagos:
-    <span class="pull-right amount">
+    Payments:
+    <i class="pull-right">
       {{currentAccount.balance.payments | currency}}
-    </span>
+    </i>
     </p>
     <p>
-    Retiros:
-    <span class="pull-right amount">
+    Withdrawals:
+    <i class="pull-right">
       {{currentAccount.balance.withdrawals | currency}}
-    </span>
+    </i>
     </p>
+    </div>
   </div>
-
+</div>
 
   <div ng-if="currentAccount.account_type == 'TRANSFER'">
     <div class="row date-section text-center">
-      N&uacute;mero: {{currentAccount.number}}
+      Number: {{currentAccount.number}}
     </div>
 
     <div class="amounts-section">

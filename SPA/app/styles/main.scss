@@ -1,13 +1,88 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
-
+*{outline:none;}
 body, html, #mainDiv {
     height: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f2f3f3;
+    background: #f2f3f3;
+    -webkit-font-smoothing:antialiased;
+    font-size: 13px;
+    color:#434040;
+}
+//VARS
+$primary-color:#054c87; //azul hover
+$secondary-color:black; 
+$aux-color:#05589d; //botones
+
+//MIXINS
+@mixin border_radius($radius: 10px) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+@mixin gradient_top_bottom($color_top: #ffffff, $color_bottom: #000000) {
+  background: $color_top !important;
+  background: -moz-linear-gradient(top, $color_top 0%, $color_bottom 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color_top), color-stop(100%,$color_bottom)) !important;
+  background: -webkit-linear-gradient(top, $color_top 0%,$color_bottom 100%) !important;
+  background: -o-linear-gradient(top, $color_top 0%,$color_bottom 100%) !important;
+  background: -ms-linear-gradient(top, $color_top 0%,$color_bottom 100%) !important;
+  background: linear-gradient(to bottom, $color_top 0%,$color_bottom 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color_top, endColorstr=$color_bottom,GradientType=0 ) !important;
+}
+@mixin box_shadow($shadow: #000000){
+  -moz-box-shadow: 0 0 10px $shadow;
+  -webkit-box-shadow: 0 0 10px $shadow;
+  box-shadow: 0 0 10px $shadow;
+}
+@mixin anim_transicion_ease( $segundos: 0.3s ){
+  transition: all $segundos ease;
+  -ms-transition: all $segundos ease;
+  -webkit-transition: all $segundos ease;
+  -o-transition: all $segundos ease;
+  -moz-transition: all $segundos ease;
 }
 
+//BOOTSTRAP RESET
+.ui-datepicker{
+  background:white;
+  padding:10px;
+  @include border_radius(5px);
+
+  table, div{
+    width:200px;
+
+    .ui-datepicker-next{
+      float:right;
+    }
+  }
+}
+.btn{
+  border:none;
+  padding: 7px 0;
+  font-size: 14px;
+  -webkit-font-smoothing:antialiased;
+}
+.btn-info{
+  background:$aux-color;
+}
+.btn-info:hover, .btn-info:active{
+  background:$primary-color;
+}
+.btn-default{
+  border:1px solid #cccccc;
+}
+.btn-default:hover, .btn-default:active{
+  background:#efefef;
+}
+.alert-danger{
+  border:none;
+}
+i{
+            font-style: normal;
+            font-weight: bold;
+          }
 .login_back {
     background: black url("/images/bg_hme.jpg") center center no-repeat;
     background-size: cover;
@@ -28,10 +103,10 @@ body, html, #mainDiv {
     }
 
     .logo {
-        background: url("/images/logo.png");
-        background-size: cover;
+        background: url("/images/logo.png") no-repeat center center;
+        background-size: auto 50px;
         height: 50px;
-        margin: 0 auto 10px auto;
+        margin: 0 auto 30px auto;
         width: 222px;
     }
 
@@ -51,28 +126,26 @@ body, html, #mainDiv {
 
         input {
             border: none;
-            box-shadow: none;
-            -moz-box-shadow: none;
-            -webkit-box-shadow: none;
-            padding: 10px 0px 15px 0px;
-            width: 80%;
-
+            box-shadow:none;
+            padding: 15px 0;
+            width: 100%;
+            text-align: center;
         }
 
         .border {
             font-size: 16px;
             border-bottom: 1px solid #bdbdbd;
             width: 100%;
-
-            .btn_login {
-                background: url("/images/btn_login.png") no-repeat;
-                width: 25px;
-                height: 25px;
-                border: none;
-                margin-top: 2px;
-            }
         }
-
+        .btn{
+          background:$aux-color;
+          color:white;
+          margin:10px 0;
+          width: 100%;
+        }
+        .btn:hover, .btn:active{
+          background:$primary-color;
+        }
         input[type="checkbox"] {
             width: 12px!important;
             height: 12px!important;
@@ -81,22 +154,20 @@ body, html, #mainDiv {
 
         .registration {
             border-top: 1px solid #bdbdbd;
-            margin-top: 20px;
+            margin-top: 15px;
             margin-left: -30px;
-            padding-top: 20px;
+            padding-top: 15px;
             width: 300px;
+            color:$secondary-color;
         }
     }
 
     .rounded {
-        -webkit-border-radius: 7px;
-        -moz-border-radius: 7px;
-        border-radius: 7px;
+        @include border_radius(7px);
     }
 
     .shadow {
-        -webkit-box-shadow: 0 0 20px 0 #6f6f6f;
-        box-shadow: 0 0 20px 0 #6f6f6f;
+        @include box_shadow(#2f2f2f);
     }
     .home_footer {
         color: #FFF;
@@ -106,14 +177,14 @@ body, html, #mainDiv {
         right: 0;
         font-size: 11px;
 
-        .logo {
-            background: url("/images/logo_foot.png") no-repeat;
-            width: 28px;
-            height: 28px;
-        }
-
         a, a:hover {
             color: #FFF;
+            padding:0 7px;
+            border-right:1px solid white;
+        }
+
+        a:last-child{
+          margin-right:5px;
         }
     }
 }
@@ -130,68 +201,108 @@ body, html, #mainDiv {
         background: none !important;
      }
 }
-
+.btn-alertas{
+  background:white;
+  padding: 7px 10px;
+  margin:13px 10px 0 0;
+  border-bottom:1px solid $primary-color;
+}
+.btn-alertas:hover{
+  background:#efefef;
+}
 .status-navbar {
-    background: #000;
+    background: $secondary-color;
     color: #FFF;
     font-size: 11px;
-    padding: 3px 0;
+    padding: 5px 0;
+
+    a,a:hover{
+      color:white;
+      padding: 0 7px;
+      border-right:1px solid white;
+    }
+    a:last-child{
+      border:none;
+    }
 }
 
 .main-menu {
-    background: #4dc1dc url(/images/header_bg.png);
     width: auto;
-    height: 50px;
-    border-radius: 0;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
+    height: 67px;
+    border:none;
+    @include gradient_top_bottom(#5dbefb,#1b477f);
+    @include border_radius(0);
 
     .bank-logo {
-        background: url(/images/bank_logo.png) 0 0px no-repeat !important;
+        background: url(/images/bank_logo.png) no-repeat left center !important;
+        background-size: auto 45px !important;
         width: 189px;
         height: 50px;
         display: block;
         float: left;
-        margin-right: 10px;
-        text-decoration: none;
-        border: none !important;
+        margin: 9px 20px 0 0;
     }
 
     .nav li {
-        margin: 14px 20px 0 15px !important;
-        font-size: 12px;
-        color: #FFF;
-
+        margin: 24px 15px 0 15px !important;
+        font-size: 13px;
+        color: #214b86;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 
-    .nav li.active {
-        font-size: 13px;
-        font-weight: bold;
+    .nav li.active a{
+        font-size: 14px;
+        color: rgba(255,255,255,1)
     }
 
     .nav a {
-        padding: 0!important;
-        color: #FFF!important;
+        padding: 0 !important;
+        color: #214b86;
+        @include anim_transicion_ease(0.25s);
+    }
+
+    .nav.user a, .nav.user a .caret, .nav.user a:hover, nav.user a:hover .caret{
+        color: white;
+        opacity:1;
+    }
+    .nav.user a strong.caret, nav.user a:hover strong.caret{
+        opacity:1;
+        border-top-color:white;
+        border-bottom-color:white;
     }
 
     .nav a:hover {
-        color: #FFF!important;
-        background: none!important;
+        color: rgba(255,255,255,0.8);
+        background: none !important;
     }
 
     .btn-logout {
-        color: #FFF;
+        padding:7px 10px;
+        margin-top:17px;
+        color:white;
+        background:#1b3a56;
         font-size: 12px;
-        background: #ea9e17;
-        margin-top: -5px;
+        padding: 7px 25px;
     }
 
-    .btn-logout:hover {
-        background: #e78007;
+    .btn-logout:hover, .btn-logout:active {
+       background:#152d42;
     }
-
+    .icoMenu{
+      margin: -2px 10px 0 20px;
+        img{
+          width:20px;
+        }
+    }
+    .icoFaq{
+      margin: -2px 10px 0 10px;
+      img{
+          width:20px;
+        }
+    }
     .user .dropdown-menu {
-      border-radius: 6px;
+      @include border_radius(6px);
 
       li {
         margin: 0 !important;
@@ -209,7 +320,7 @@ body, html, #mainDiv {
 }
 
 .content > .container {
-    padding: 62px 0;
+    padding: 90px 0;
 }
 
 .title h1 {
@@ -221,19 +332,35 @@ body, html, #mainDiv {
 .btn-alert {
     margin: 20px 30px 0 0;
 }
-
+section.scroll{
+  height: 430px;
+  padding: 10px 10px 0 10px;
+  overflow-y:hidden;
+  overflow-x:scroll;
+  position: relative;
+}
+section.scroll > .scroll{
+  width:200% !important; 
+}
+.account > a{
+      display: block;
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height: 90px;
+}
 .account {
-    padding: 0;
-    margin: 10px 0;
+  position: relative;
+    width:230px;
+    padding: 90px 15px 10px 15px;
+    margin: 10px 20px;
     background: #FFF;
-    border: 1px solid #e3e3e3;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-    line-height: 25px;
+    border: 1px solid #efefef;
+    overflow: hidden;
+    @include border_radius(5px);
+    @include box_shadow(#e3e3e3);
+  
 
     img {
         width: auto;
@@ -244,43 +371,43 @@ body, html, #mainDiv {
     }
 
     h2 {
-        font-size: 18px;
-        color: #00559c;
+        font-size: 14px;
+        margin:10px;
+        color: $primary-color;
         text-align: center;
         font-weight: bold;
         height: 30px;
     }
 
     .date-section {
-        margin: 0 0px;
-        padding: 5px 5px;
-        color: #000;
-        background: #fafafa;
+        margin:10px 0 0 0;
+        padding: 5px 10px;
+        background: white;
+        border-top:1px solid #efefef;
+        font-weight: bold;
     }
-
     .amounts-section {
-        border-top: 1px solid #e3e3e3;
-        border-bottom: 1px solid #e3e3e3;
-        padding: 5px 10px 0px 10px;
-        color: #979797;
-        margin-bottom: 10px;
-        height: 145px;
+        border-top: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+        padding: 5px 0;
+        height: 144px;
+        line-height: 25px;
+        
+        .col-xs-4{
+          padding: 0; 
+        }
 
-        .amount {
-            font-size: 14px;
+        .amount, .available-amount {
             font-weight: bold;
+            text-align: right;
         }
 
         .available {
-            color: #00ab82;
+            color: $secondary-color;
         }
-
-        .available-amount {
-            color: #000;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
+    }
+    .amounts-section > .row{
+          margin: 0;
     }
 
     .amounts-section-transfer {
@@ -289,9 +416,16 @@ body, html, #mainDiv {
     }
 
     .buttons {
-        padding: 0 10px;
+        margin-top:10px;
         text-align: center;
         height: 40px;
+        line-height: 40px;
+        a, a:hover, a:active{
+          color:$primary-color;
+        }
+        .btn{
+          padding:7px 10px;
+        }
     }
 }
 
@@ -303,9 +437,7 @@ body, html, #mainDiv {
     padding: 20px;
     margin: 10px 0;
     background: #FFF;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    @include border_radius(5px);
     font-family: Arial, sans-serif;
 
     .row {
@@ -355,44 +487,125 @@ body, html, #mainDiv {
     bottom: 0;
     width: 100%;
     height: 30px;
-    padding: 10px 0;
+    line-height: 30px;
+    border-top:1px solid #efefef;
     font-family: Arial, sans-serif;
 
     a, a:hover {
-        margin-left: 30px;
         color: #999999;
+        padding:0 7px;
+        border-left:1px solid #efefef;
+    }
+    a:first-child{
+      margin-left: 5px;
+    }
+    a:last-child{
+      border:none
     }
 
 }
-
-
+.glyphicon-chevron-up::before{
+  content:"";
+  display: block;
+  width: 20px;
+  height: 10px;
+  background:url(/images/up.png) no-repeat center top;
+}
+.glyphicon-chevron-down::before{
+  content:"";
+  display: block;
+  width: 20px;
+  height: 10px;
+  background:url(/images/down.png) no-repeat center top;
+}
 .account-header {
-    top: 70px;
-    background-color: #f2f3f3;
+    top: 85px;
+    @include gradient_top_bottom(#5dbefb,#1b477f);
     position: fixed;
     z-index: 1;
     width: 100%;
+    height: 80px;
+
+    .btn{
+      display:block;
+      float:left;
+      background:none;
+      font-size: 11px !important;
+      color:#bdbdbd;
+      height: 80px;
+      padding: 0 15px;
+      @include border_radius(0);
+      span{
+        display:block;
+        width: 30px;
+        height: 30px;
+        margin: 10px auto;
+      }
+      .tcredito{
+        background:url(/images/ico-tarjeta.png) no-repeat center center;
+        background-size:30px;
+      }
+      .tservicios{
+        background:url(/images/ico-servicios.png) no-repeat center center;
+        background-size:30px;
+      }
+      .ttransfer{
+        background:url(/images/ico-traspaso.png) no-repeat center center;
+        background-size:30px;
+      }
+      .tta{
+        background:url(/images/ico-ta.png) no-repeat center center;
+        background-size:30px;
+      }
+    }
+    .btn:hover, .btn:active, .btn.active{
+      background:white;
+      color:white !important;
+      span{
+        margin-top:30px;
+      }
+      .tcredito{
+        background:url(/images/ico-tarjeta-a.png) no-repeat center center;
+        background-size:30px;
+      }
+      .tservicios{
+        background:url(/images/ico-servicios-a.png) no-repeat center center;
+        background-size:30px;
+      }
+      .ttransfer{
+        background:url(/images/ico-traspaso-a.png) no-repeat center center;
+        background-size:30px;
+      }
+      .tta{
+        background:url(/images/ico-ta-a.png) no-repeat center center;
+        background-size:35px;
+      }
+    }
 
     .account-name {
-        padding: 8px 0 0 60px
+      color:white;
+      margin: 0;
+      padding-top:35px;
+      font-size: 18px;
     }
 
     .last-digits {
-        color: #999999;
+        color: white;
     }
 
     h4 {
-        font-size: 24px;
-    }
-
-    p {
-        color: #5b5b5b;
-        margin-top: -5px;
-        font-size: 14px;
+        font-size: 22px;
+        color:$primary-color;
+      
+      p{
+        font-size: 13px;
+        color:#434040;
+        text-align: center;
+      }
     }
 
     .small {
-      margin-top: 10px;
+      margin-top: -10px;
       margin-right: 10px;
       height: 40px;
       width: 60px;
@@ -403,10 +616,11 @@ body, html, #mainDiv {
 
 .left-inner-addon {
   position: relative;
-  margin-top: 5px;
+  margin-top: 8px;
 
   input {
     padding-left: 30px;
+
   }
 
   i {
@@ -417,98 +631,283 @@ body, html, #mainDiv {
 }
 
 .account-menu {
-    top: 140px;
-    background-color: #EDEDED;
-    position: fixed;
+    top: 150px;
+    background:white;
+    position: absolute;
     z-index: 900;
     width: 100%;
+    padding-bottom: 5px;
 
+    .account-menu-buttons.pull-right .btn{
+      background:none;
+      border:none;
+      color:#434040;
+      box-shadow:none;
+    }
+    .account-menu-buttons.pull-right .btn:hover, .account-menu-buttons.pull-right .btn:active, .account-menu-buttons.pull-right .btn.active{
+      background:rgba(29, 108, 175, 0.6);
+      border:none;
+      color:white;
+    }
     .account-menu-buttons {
         margin-top: 7px;
 
         h5 {
             float: left;
-            font-size: 12px;
-            color: #6b6b6b;
+            color:$primary-color;
+            font-size: 13px;
+            font-weight: bold;
             margin-right: 10px;
         }
-        .btn-group {
-            float: left;
+        .btn{
+              float: left;
+              background:rgba(169, 38, 34, 0.6);
+              color:white;
+              margin: 0 5px;
+              padding: 7px;
+              @include border_radius(3px);
         }
-
-        .btn-default {
-            border: 1px solid #DEDEDE;
-            background-color: #F3F3F3;
-        }
-
-        .btn-default:hover {
-            background-color: #EDEDED;
+        .btn:hover, .btn:active{
+          background:rgba(169, 38, 34, 0.8);
         }
     }
 }
-
-.right-section-default {
-  position: fixed;
-  width: 30%;
-  top: 200px;
+.col-md-5.col-lg-4.pull-right{
+  padding: 0 !important;
+  background:#f9f9f9;
 }
+.right-section-default {
+  //width: 30%;
+  background:#f9f9f9;
+  @include border_radius(0);
 
+  img{
+    width:100%;
+    margin-top: 40px;
+    border:1px solid white;
+  }
+}
+.paddingCenter{
+  overflow: hidden;
+  padding: 15px;
+  border-bottom:1px solid #efefef;
+  input.fAmount, input.fAmount:active, input.fAmount:focus{
+    padding:10px !important;
+    width: 100%;
+    font-size: 18px;
+  }
+  .ng-valid.ng-dirty, .ng-dirty{
+    border-color:#b3b5bd;
+  }
+  input, input:active, input:focus, textarea, textarea:focus, textarea:active{
+    resize:none;
+    box-shadow:none;
+    background:white;
+    border: 1px solid #b3b5bd;
+    padding:7px 10px;
+    font-size: 14px;
+    @include border_radius(10px);
+  }
+  input[name="correo"]{
+    background: url(/images/ico-mail.png) no-repeat 95% center white;
+     background-size:20px;
+  }
+  input[name="telefono"]{
+    background: url(/images/ico-telefono.png) no-repeat 95% center white;
+     background-size:20px;
+  }
+  .styleSelect{
+     overflow: hidden;
+     background: url(/images/ico-lupa.png) no-repeat 98% center white;
+     background-size:20px;
+     border: 1px solid #b3b5bd;
+     @include border_radius(10px);
+     select{
+      background: transparent;
+      border: 0;
+     -webkit-appearance: none;
+     }
+  }
+  span{
+    display: block;
+    float:left;
+    margin-top: 9px;
+  }
+  span + input{
+    background:url(/images/ico-calendario.png) no-repeat 95% center white;
+    background-size:20px;
+  }
+}
 .right-section {
-  position: fixed;
-  width: 30%;
-  top: 140px;
-  z-index: 901;
+  .left-inner-addon, p{
+    margin:10px;
+    padding: 0;
+  }
 
+  .btn{
+    padding: 7px 10px;
+    margin-right:10px;
+  }
   .close-button {
     cursor: pointer;
   }
 
   .submenu-blue {
-    background-color: #05589d;
-    padding: 2px 20px;
-    color: #FFF;
+    padding: 15px;
+    border-bottom:1px solid #efefef;
+    h5{
+      color:#575757;
+      font-size: 18px;
+    }
+    button{
+      background:#f2f6f7;
+      border:1px solid #b3b5bd;
+      font-size: 11px;
+      color:#575757;
+      padding:7px 10px;
+      margin: 0 5px;
+      @include border_radius(10px);
+    }
+    .addB{
+      font-size: 14px;
+      background:$aux-color;
+      width:45%;
+      color:white;
+      border:none;
+      @include border_radius(10px);
+    }
+    .addB:hover, .addB:active{
+      background:$primary-color;
+    }
+    .addB + button{
+       width:45%;
+       font-size: 14px;
+    }
   }
 
   .submenu-yellow {
-    background-color: #FC992E;
-    padding: 2px 20px;
-    color: #FFF;
+    padding: 15px;
+    border-bottom:1px solid #efefef;
+    h5{
+      color:#ffa102;
+      border:2px solid #ffa102;
+      padding: 10px;
+      margin: 0;
+      text-align: center;
+      @include border_radius(10px);
+      span:first-child{
+        background:url(/images/ico-telefono-amarillo.png) no-repeat center center;
+        background-size:20px;
+        width: 20px;
+        height: 20px;
+      }
+      span:last-child{
+        background:url(/images/ico-duda.png) no-repeat center center;
+        background-size:20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 
   .yellow-message {
-    background-color: #FFECCC;
-    padding: 20px 20px;
-
+    padding: 15px;
+    border-bottom:1px solid #efefef;
+    input{
+      resize:none;
+      background:white;
+      border: 1px solid #b3b5bd;
+      padding:7px 10px;
+      font-size: 14px;
+      box-shadow:none;
+      @include border_radius(10px);
+    }
+    button{
+      background:$aux-color;
+    }
+    button:hover, button:active{
+      background:$primary-color;
+    }
     img {
       margin: 0 10px 0 20px;
     }
   }
-
+.iApprobed{
+      background:url(/images/ico-aprobado.png) no-repeat center center;
+      background-size:40px;
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+    }
   .submenu-green {
-    background-color: #08D4A5;
-    padding: 2px 20px;
-    color: #FFF;
-  }
+    padding: 15px;
+    border-bottom:1px solid #efefef;
+    h5{
+      color:#048f32;
+      font-size: 18px;
+      line-height: 40px;
+    }
 
+  }
+label.fAmount{
+  font-size: 18px;
+}
   .green-message {
-    background-color: #E6FBF6;
-    padding: 20px 20px;
+    padding: 0;
+    .side-block{
+      padding:10px 0;
+    }
+    div{
+      border:none;
+      margin: 0 !important;
+    }
+    .col-md-12{
+      overflow: hidden;
+      span{
+        color:#ccc;
+      }
+      p{
+        float:left;
+        width: 45%;
+        margin: 0;
+      }
+      label{
+        float:right;
+        width: 54%;
+        margin: 0;
+        text-align: right;
+      }
+    }
   }
-
+.tApproved{
+  border-top:1px solid #efefef !important;
+  border-bottom:1px solid #efefef !important;
+  button{
+    background:url(/images/ico-print.png) no-repeat 35% center white;
+    background-size:15px;
+    border:1px solid $primary-color;
+    color:$primary-color;
+  }
+  button:active, button:hover{
+    background:url(/images/ico-print.png) no-repeat 35% center #fbfbfb;
+    background-size:15px;
+  }
+}
   .submenu-gray {
-    background-color: #F9F9F9;
-    padding: 2px 20px;
-    color: #000000;
+    padding: 5px 15px;
+    background:#efefef;
+    border-bottom:1px solid #efefef;
   }
 
   .white-message {
-    background-color: #FFFFFF;
-    padding: 20px 20px;
-
+    padding:5px 0;
     .row {
-      margin: 5px 0;
-      padding: 5px 0;
-      border-bottom: 1px solid #DEDEDE;
+      margin: 0;
+      padding: 3px 0;
+      a, a:hover, a:active{
+        color:#575757;
+        text-decoration:none;
+      }
     }
   }
 
@@ -528,54 +927,131 @@ body, html, #mainDiv {
 
 
 }
+.glyphicon{
 
+}
 .transactions {
-    padding-top: 220px;
-    color: #666666;
-    margin-bottom: 100px;
-
+    padding-top: 165px;
+    padding-bottom: 100px;
+    background:white;
+    .container{
+      background:white;
+      .nuevo{
+        border-right:1px solid #efefef;
+      }
+    }
+.buscar{
+  overflow: hidden;
+  margin:0 -15px;
+  padding: 15px;
+  input{
+    width: 80%;
+    background:url(/images/buscador.png) no-repeat 98% center, white;
+    background-size:15px;
+    @include border_radius(10px);
+    border:1px solid #ccc;
+    float:left;
+  }
+  span{
+    text-align: center;
+    float:right;
+    border:1px solid #ccc;
+    padding: 6px 0;
+    width: 17%;
+    font-size: 12px;
+    background:url(/images/download.png) no-repeat 10% center;
+    background-size:10px;
+    @include border_radius(10px);
+  }
+}
+.nuevosFiltros{
+  background:#ebeff1;
+  height: 40px;
+  line-height: 40px;
+  border-top:1px solid #efefef;
+  margin: 0 -15px;
+}
     .transaction {
-        padding: 8px 25px 13px 17px;
-        line-height: 40px;
-        font-size: 16px;
+        padding: 0 25px 0 17px;
+        line-height: 25px;
+        font-size: 14px;
         cursor: pointer;
-
-        p {
-            font-size: 10px;
-            margin-top: 5px;
-            line-height: 10px;
-            color: #999999;
-        }
+        border-bottom:1px solid #efefef;
 
         h5 {
-            margin-bottom: 0px;
-            line-height: 16px;
-            color: #999999;
+            text-transform: uppercase;
+            font-size: 12px;
+            color:#999999;
+
+            span {
+            font-size: 24px;
+            font-weight: bold;
+            display:block;
+            color:#999999;
+            }
         }
 
         .category {
             font-size: 12px;
-            color: #999999;
+            margin-top:15px;
+            display: block;
+        }
+        .description{
+          color:#999999;
+          margin-top:15px;
+          display: block;
         }
 
     }
 
-    .transaction-odd {
-        background: #F4F7FA;
-    }
-
     .selected {
-      background-color: #DEDEDE;
+      background-color: #5dbefb;
+      *{
+        color:white !important;
+        *{
+          color:white !important;;
+        }
+      }
+      span{
+          color:white !important;;
+        }
     }
-
+.overflowH{
+  overflow: hidden;
+  margin-bottom: 20px;
+  span{
+    margin: 0;
+  }
+}
     .detail-header {
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #DEDEDE;
+      overflow: hidden;
+      padding: 15px;
+      border-bottom:1px solid #efefef;
+
+        h3{
+          margin: 0;
+          float: left;
+          color:#575757;
+          font-size:18px;
+          margin: 10px 0 20px 0;
+        }
+        span{
+          color:$aux-color;
+          font-weight: bold;
+          font-style: 18px;
+          text-transform: uppercase;
+          margin-top: 13px;
+        }
+    }
+    .detail-header +p{
+      margin-top:20px;
     }
 
     .amount {
-            font-size: 16px;
+            font-size: 14px;
+            color:#575757;
+            margin-top:15px;
+            font-weight: bold;
         }
 
     .last-services {
@@ -590,59 +1066,31 @@ body, html, #mainDiv {
     }
 
     .btn-success {
-      background-color: #0bd5a5;
-      border-color: #0bd5a5;
+      background:$aux-color;
     }
-
-  .alert-error {
-    border: 1px dashed #FA787E;
-  }
-
-  p.alert-error-p {
-    color: #FA787E;
-    font-size: 11px;
-    margin-left: 10px;
-  }
-
-  .vip-loader {
-    margin: -35px -10px 0px 0px;
-  }
+    .btn-success:active,.btn-success:hover{
+      background:$primary-color;
+    }
 }
 
 .savings {
-  background-image: url("/images/accounts/cuenta_savings.png");
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
-  height:140px;
-  display: block;
+  background: url("/images/accounts/cuenta_savings.png") no-repeat center center;
+  background-size: 110%;
 }
 
 .checks {
-  background-image: url("/images/accounts/cuenta_checks.png");
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
-  height:140px;
-  display: block;
+  background: url("/images/accounts/cuenta_checks.png") no-repeat center center;
+  background-size: 110%;
 }
 
 .credit_card {
-  background-image: url("/images/accounts/cuenta_credit_card.png");
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
-  height:140px;
-  display: block;
+  background: url("/images/accounts/cuenta_credit_card.png") no-repeat center center;
+  background-size: 110%;
 }
 
 .debit_card {
-  background-image: url("/images/accounts/cuenta_debit_card.png");
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
-  height:140px;
-  display: block;
+  background: url("/images/accounts/cuenta_debit_card.png") no-repeat center center;
+  background-size: 110%;
 }
 
 //Styles made from developers
@@ -654,7 +1102,12 @@ body, html, #mainDiv {
 }
 
 .box{
-border:1px solid #ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;overflow:hidden;clear:both;background:#e6e8e7;margin:10px 0;
+  border:1px solid #ccc;
+  @include border_radius(5px);
+  overflow:hidden;
+  clear:both;
+  background:#e6e8e7;
+  margin:10px 0;
     .col-md-4{
             padding-top:5px;
             padding-bottom:5px;
@@ -732,10 +1185,10 @@ background-color: #bab7ab;
 }
 
 input.input-box{
-    backgroud-color:#fff;
-    border: 1px solid #ccc;
+    backgroud:#fff;
+    border: 1px solid #efefef;
     padding:4px 6px;
-    border-radius:3px;
+    @include border_radius(3px);
     width:50%;
 }
 
@@ -757,8 +1210,14 @@ input.input-box{
    height:48px;
 }
 
+.ng-invalid.ng-dirty{
+    border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty{
+    border-color: #78FA89;
+}
+
 .submenu-blue.transfer{
     overflow:hidden;
 }
-
-

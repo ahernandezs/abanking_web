@@ -2,8 +2,9 @@
 
   <div class="submenu-green">
     <h5>
-      Tu traspaso ha sido aplicado
-      <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+      <span class="pull-left iApprobed"></span>
+      Your transfer has been approved
+      <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
     </h5>
   </div>
 
@@ -12,8 +13,8 @@
     <div class="side-block">
       <div class="row">
         <div class="col-md-12">
-          <p>Cuenta de dep&oacute;sito:</p>
-          &nbsp <label for="">{{beneficiary.current.beneficiary_name}}, {{beneficiary.current.issuer_name}} ***{{beneficiary.current.number}}</label>
+          <p>Pay to:</p>
+          <label for="">{{beneficiary.current.beneficiary_name}}, {{beneficiary.current.issuer_name}} ***{{beneficiary.current.number}}</label>
         </div>
       </div>
     </div>
@@ -21,70 +22,131 @@
     <div class="side-block">
       <div class="row">
         <div class="col-md-12">
-          <p>Cuenta de retiro:</p>
-          &nbsp <label for="">{{currentAccount.name}} {{currentAccount.last_digits}}</label>
+          <p>Funding account:</p>
+          <label for="">{{currentAccount.name}} {{currentAccount.last_digits}}</label>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="side-block">
+      <div class="row">
+        <div class="col-md-7">
+          <p>Authorization number</p>
+          <label for="">002510</label>
+        </div>
+        <div class="col-md-5">
+          <p>Amount:</p>
+          <label for="">{{transfer.amount | currency}}</label>
+        </div>
+      </div>
+    </div>-->
+
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Authorization number</p>
+          <label for="">002510</label>
         </div>
       </div>
     </div>
 
     <div class="side-block">
       <div class="row">
-        <div class="col-md-7">
-          <p>No. de autorizaci&oacute;n</p>
-          &nbsp <label for="">002510</label>
-        </div>
-        <div class="col-md-5">
-          <p>Importe:</p>
-          &nbsp <label for="">{{transfer.amount | currency}}</label>
+        <div class="col-md-12">
+          <p>Amount:</p>
+          <label class="fAmount" for="">{{transfer.amount | currency}}</label>
         </div>
       </div>
     </div>
 
     <div class="side-block">
       <div class="row">
+        <div class="col-md-12">
+          <p>Actual balance:</p>
+           <label for="">{{currentAccount.balance.current | currency}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Date:</p>
+           <label for="">{{transfer.date}}</label>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="side-block">
+      <div class="row">
         <div class="col-md-7">
-          <p>Saldo actual:</p>
-          &nbsp <label for="">{{currentAccount.balance.current | currency}}</label>
+          <p>Actual balance:</p>
+           <label for="">{{currentAccount.balance.current | currency}}</label>
         </div>
         <div class="col-md-5">
-          <p>Fecha:</p>
-          &nbsp <label for="">{{transfer.date}}</label>
+          <p>Date:</p>
+           <label for="">{{transfer.date}}</label>
         </div>
       </div>
     </div>
 
     <div class="side-block" ng-show="transfer.sendmail">
       <label>
-        Beneficiario notificado
+        Notification of payment to the beneficiary (optional)
       </label>
-    </div>
-
+    </div>-->
     <div class="side-block" ng-show="transfer.sendmail">
       <div class="row">
-        <div class="col-md-7">
-          <p>Email:</p>
-          &nbsp <label for="">{{beneficiary.current.email}}</label>
-        </div>
-        <div class="col-md-5">
-          <p>Mensaje:</p>
-          &nbsp <label for="">{{transfer.message}}</label>
+        <div class="col-md-12">
+          <span>Notification of payment to the beneficiary (optional)</span>
         </div>
       </div>
     </div>
 
-
-    <br />
-
-    <div class="text-center">
-      <button type="submit" class="btn btn-success">
-        <span class="glyphicon glyphicon-print"></span>&nbsp Imprimir
-      </button>
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Email:</p>
+           <label for="">{{beneficiary.current.email}}</label>
+        </div>
+      </div>
     </div>
 
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Message:</p>
+           <label for="">{{transfer.message}}</label>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="side-block" ng-show="transfer.sendmail">
+      <div class="row">
+        <div class="col-md-7">
+          <p>Email:</p>
+           <label for="">{{beneficiary.current.email}}</label>
+        </div>
+        <div class="col-md-5">
+          <p>Message:</p>
+           <label for="">{{transfer.message}}</label>
+        </div>
+      </div>
+    </div>-->
+
+
+    
+
   </div>
+  <div class="paddingCenter tApproved">
+      <button type="submit" class="btn btn-block">Print</button>
+    </div>
+    <div class="paddingCenter">
+      <button ng-click="showTransfers()" class="btn btn-block btn-success">Another transfer</button>
+    </div>
 
   <div class="submenu-gray">
-    <h5>Últimos pagos</h5>
+    <h5>Last payments</h5>
   </div>
 
   <div class="white-message">

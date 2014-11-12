@@ -1,56 +1,47 @@
 <div class="login_back">
+  <header class="home_header container">
+    <p class="pull-left">Welcome to CITI</p>
+    <ul class="nav pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language: English <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Espa&ntilde;ol</a></li>
+          <li class="divider"></li>
+          <li><a href="#">English</a></li>
+        </ul>
+      </li>
+    </ul>
+  </header>
 
-  <div class="home_header">
-    <div class="container">
-      <p class="pull-left">Bienvenido a Anzen Banking Beta</p>
-      <ul class="nav pull-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Idioma: Espa&ntilde;ol <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Espa&ntilde;ol</a></li>
-            <li class="divider"></li>
-            <li><a href="#">English</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="container login-form shadow rounded" ng-controller="LoginCtrl">
+  <section class="container login-form shadow rounded" ng-controller="LoginCtrl">
     <div class="logo"></div>
     <form class="form-signin" ng-submit="login()">
-      <p>Inicia sesión</p>
+      <!--<p>Inicia sesión</p>-->
       <div class="alert alert-danger" ng-if="errorMessage">
         {{errorMessage}}
       </div>
       <label class="border">
-        <input type="text" ng-model="username" class="form-control" placeholder="Usuario" value="1234502" required autofocus>
+        <input type="text" ng-model="username" class="form-control" placeholder="User" value="1234502" required autofocus>
       </label>
       <label class="border">
-        <input type="password" ng-model="password"  class="form-control pull-left" placeholder="Contraseña" value="A1234567" required>
-        <button class="btn_login pull-right" type="submit"></button>
+        <input type="password" ng-model="password"  class="form-control" placeholder="Password" value="A1234567" required>
       </label>
+      <button ng-disabled="loginButtonStatus.disabled" class="btn" type="submit">{{loginButtonStatus.text}} Enter</button>
       <label class="checkbox">
-        <input type="checkbox"> Recordarme
+        <input type="checkbox"> Remember me
       </label>
     </form>
-    <div class="registration">
-      ¿Eres nuevo aquí?
+    <div class="registration text-center">
+      ¿Are you new? Register
     </div>
-  </div>
+  </section>
 
-  <div class="home_footer">
-    <div class="container">
-      <div class="pull-left logo"></div>
-      <div class="pull-right">
-        <a href="javascript:void(0);">&iquest;Olvidaste tu contrase&ntilde;a?</a> |
-        <a href="javascript:void(0);">Sobre nosotros</a> |
-        <a href="javascript:void(0);">Busca por internet</a> |
-        <a href="javascript:void(0);">Banca m&oacute;vil</a> |
-        <a href="javascript:void(0);">Privacidad</a> |
-        &copy; 2013 Anzen Soluciones S.A. de C.V.
-      </div>
-    </div>
-  </div>
-
+  <footer class="home_footer container text-center">
+        <a href="javascript:void(0);">Forgot your password?</a>
+        <a href="javascript:void(0);">About us</a>
+        <a href="javascript:void(0);">Search by Internet</a>
+        <a href="javascript:void(0);">Mobile Bank</a>
+        <a href="javascript:void(0);">Privacy</a>
+        &copy; 2014 Anzen Soluciones S.A. de C.V.
+  </footer>
 </div>
