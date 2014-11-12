@@ -1,32 +1,22 @@
 <div ng-include="'views/partials/layout/main-header.html'"></div>
 
 <div class="content">
-  <div class="container">
-    <div class="row title">
-      <div class="col-md-8">
-        <h1>Cuentas</h1>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-info btn-alert pull-right">
-          <span class="glyphicon glyphicon-phone"></span>
-          alertas
-        </button>
-      </div>
-    </div>
-
+  <div class="container">  
     <!-- Accounts -->
 
-    <div class="row">
-      <div class="col-md-3 col-sm-6" ng-repeat="account in accounts | filter: { account_type : '!' + 'INVESTMENT'}">
+  <section class="scroll">
+    <div class="row scroll">
+      <div class="pull-left" ng-repeat="account in accounts | filter: { account_type : '!' + 'INVESTMENT'}">
+
         <div class="account">
-          <h2>{{account.name}} {{account.last_digits}}</h2>
           <a ng-href="#/accounts/{{account._account_id}}/transactions" ng-class="account.account_type | lowercase"></a>
+          <h2>{{account.name}} {{account.last_digits}}</h2>
 
           <div ng-if="account.account_type == 'CREDIT_CARD'">
             <div class="row date-section">
-              Fecha de corte:
+              Balance date:
               <span class="pull-right">
-                {{account.cut_date | date:'mediumDate'}}
+                {{account.balance.cut_date | date:'mediumDate'}}
               </span>
             </div>
 
@@ -34,33 +24,33 @@
               <div class="radio">
                 <label>
                   <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio1" value="current" checked>
-                  Pago total
+                  Total payment
                   <span class="pull-right amount">{{account.balance.current | currency}}</span>
                 </label>
               </div>
               <div class="radio">
                 <label>
                   <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio2" value="minimal">
-                  Pago m&iacute;nimo
+                  Min payment
                   <span class="pull-right amount">{{account.balance.min_payment | currency}}</span>
                 </label>
               </div>
               <div class="radio">
                 <label>
                   <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio3" value="total">
-                  Pago sin intereses
+                  Without interest
                   <span class="pull-right amount">{{account.balance.total_payment | currency}}</span>
                 </label>
               </div>
               <div class="radio">
                 <label>
                   <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-7">
                       <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio4" value="other">
-                      Otra cantidad
+                      Other amount
                     </div>
-                    <div class="col-xs-6">
-                      <input type="text" class="form-control input-sm">
+                    <div class="col-xs-4">
+                      <input type="text" class="form-control input-sm" numbers-only="numbers-only" ng-model="other_amount" maxlength="15">
                     </div>
                   </div>
                 </label>
@@ -68,54 +58,55 @@
             </div>
 
             <div class="buttons">
-              <a class="pull-left" href="#">Movimientos</a>
-              <button class="btn btn-info btn-sm pull-right">Pagar tarjeta</button>
+              <a class="pull-left" href="#">movements</a>
+              <button class="btn btn-info btn-sm pull-right">Card payment</button>
             </div>
           </div>
 
           <div ng-if="account.account_type == 'SAVINGS' || account.account_type == 'CHECKS' || account.account_type == 'DEBIT_CARD'">
-            <div class="row date-section text-center">
-              Desde {{account.balance.created_at | date:'longDate'}}
+            <div class="row date-section">
+              Since {{account.balance.created_at | date:'longDate'}}
             </div>
 
             <div class="amounts-section">
-              <div class="row text-center">
-                <span class="available">Disponible:</span> <span class="available-amount">{{account.balance.current | currency}}</span>
+              <div class="row">
+                <span class="available pull-left">Available:</span>
+                <span class="available-amount pull-right">{{account.balance.current | currency}}</span>
               </div>
               <div class="row">
-                <div class="col-md-6 pull-left">
-                  <span ng-show="account.balance.deposits">Dep&oacute;sitos:</span>
+                <div class="pull-left">
+                  Deposits:
                 </div>
-                <div class="col-md-6 pull-right amount">
+                <div class="pull-right amount">
                   {{account.balance.deposits | currency}}
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 pull-left">
-                  <span ng-show="account.balance.payments">Pagos:</span>
+                <div class="pull-left">
+                  Payments:
                 </div>
-                <div class="col-md-6 pull-right amount">
+                <div class="pull-right amount">
                   {{account.balance.payments | currency}}
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 pull-left">
-                  <span ng-show="account.balance.withdrawals">Retiros:</span>
+                <div class="pull-left">
+                  Withdrawals:
                 </div>
-                <div class="col-md-6 pull-right amount">
+                <div class="pull-right amount">
                   {{account.balance.withdrawals | currency}}
                 </div>
               </div>
             </div>
 
             <div class="buttons">
-              <a href="#">Ver m&aacute;s</a>
+              <a href="#">View more</a>
             </div>
           </div>
 
           <div ng-if="account.account_type == 'TRANSFER'">
             <div class="row date-section text-center">
-              N&uacute;mero: {{account.number}}
+              Number: {{account.number}}
             </div>
 
             <div class="amounts-section-transfer">
@@ -123,15 +114,14 @@
             </div>
 
             <div class="buttons">
-              <a href="#">Ver más</a>
+              <a href="#">View more</a>
             </div>
           </div>
-
         </div> <!-- Account -->
+
       </div>
-
-    </div>
-
+    </div>  
+  </section>
     <!-- Banners -->
 
     <div class="row">
@@ -157,39 +147,40 @@
         <div class="tools">
           <div class="row">
             <div class="col-md-4">
-              <span class="download-text">Descarga nuestra App:</span>
+              <span class="download-text">Download our App:</span>
             </div>
             <div class="col-md-3">
               <select class="form-control">
-                <option>Tipo de tel&eacute;fono</option>
+                <option>Phone type</option>
                 <option>Android</option>
                 <option>iPhone</option>
                 <option>Blackberry</option>
               </select>
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control" placeholder="Número celular">
+              <input type="tel" class="form-control" placeholder="Mobile number" numbers-only="numbers-only" ng-model="cell_phone_number" maxlength="14">
             </div>
             <div class="col-md-2">
-              <button class="btn btn-info btn-block">Descargar</button>
+              <button class="btn btn-info btn-block">Download</button>
             </div>
           </div>
 
           <div class="row tip-text">
             <div class="col-md-4">
               <span class="iphone-tip pull-left"></span>
-              Recibe alertas y notificaciones de tus movimientos
+                    Receive alerts and notification of your movements
             </div>
             <div class="col-md-3">
               <span class="lock-tip pull-left"></span>
-              Incrementa la seguridad de autenticaci&oacute;n
+              Increase the authentication security
             </div>
             <div class="col-md-3">
               <span class="ticket-tip pull-left"></span>
-              Escanea y paga tus recibos
+
+              Scans and pay your bills
             </div>
             <div class="col-md-2">
-              <button class="btn btn-default btn-block">Más informaci&oacute;n</button>
+              <button class="btn btn-default btn-block">More info</button>
             </div>
           </div>
         </div>

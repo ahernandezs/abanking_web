@@ -3,23 +3,36 @@
   		<div ng-show="myForm.$valid">
 			<div class="submenu-blue transfer">
 			  	<div class="col-md-12">
-			  		<div class="col-md-6">
+			  		<button type="submit" class="addB"><span>Add</span></button>
+			  		<button ng-click="close()"><span>Cancel</span></button>
+			  		<!--<div class="col-md-6">
 						<button class="btn btn-sm btn-primary" type="submit"><span class="glyphicon glyphicon-check">Autorizar</span></button>
 					</div>
 					<div class="col-md-6">
 				 		<a ng-click="close()" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-remove alose-button">Cancelar</span></a>
-				 	</div>
+				 	</div>-->
 				</div>
 		  </div>
 		</div><!--end ng-show-->
   		<div ng-hide="myForm.$valid">
 		  <div class="submenu-blue">
-		    <h5>Da de alta una tarjeta: 
-		      <span ng-click="close()" class="glyphicon glyphicon-remove pull-right alose-button"></span>
+		    <h5>Add card: 
+		    	<button ng-click="close()" class="pull-right">Close</button>
 		    </h5>
 		  </div>				
-		</div><!--end ng-hide-->
-	  <div class="side-block">
+		</div>
+
+		<div class="paddingCenter">
+			<input type="text" name="nombre" placeholder="Name" class="form-control input-normal" ng-model="benef.name" ng-pristine ng-invalid required>
+		</div>
+		<div class="paddingCenter">
+			<input type="text" name="clabe" class="form-control input-normal" placeholder="Credit card / Departamental" ng-model="benef.card" ng-pristine ng-invalid required>
+		</div>
+		<div class="paddingCenter">
+			<input type="number" name="importe" class="form-control input-normal"  placeholder="Max amount" ng-model="benef.amount" min="0" ng-pristine ng-invalid required>
+		</div>
+<!--end ng-hide-->
+	  <!--<div class="side-block">
 	  	<p>Nombre:</p>
 	  	<input type="text" name="nombre" class="form-control input-normal" ng-model="benef.name" ng-pristine ng-invalid required>
 	  	<br>
@@ -27,6 +40,6 @@
 	  	<input type="text" name="clabe" class="form-control input-normal" placeholder="Banamex / Bancomer / Transfer" ng-model="benef.card" ng-pristine ng-invalid required>
 	  	<br>
 	  	<p>Importe m&aacute;ximo:</p>
-	  	<input type="number" name="importe" class="form-control input-normal" ng-model="benef.amount" min="0" ng-pristine ng-invalid required>
+	  	<input type="number" name="importe" class="form-control input-normal" ng-model="benef.amount" min="0" ng-pristine ng-invalid required>-->
 	</form>
 </div>

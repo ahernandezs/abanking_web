@@ -1,60 +1,60 @@
-<div class="header">
+<header class="header">
   <div class="status-navbar">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
+      <div class="container">
+        <div class="pull-left">
           <time-access date='{{last_access_date}}' media='{{last_access_media}}'/>
         </div>
-        <div class="col-md-4">
-          <span class="pull-right">
-            Tour | Cont&aacute;ctanos | Sucursales | www.banamex.com
-          </span>
-        </div>
+        <nav class="pull-right">
+          <a href="#">Contact us</a>
+          <a href="#">Locations</a>
+          <a href="#">www.citi.com</a>
+        </nav>
       </div>
-    </div>
   </div>
   <div class="navbar main-menu" role="navigation">
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
-        <a class="bank-logo" href="#"></a>
-      </div>
-    <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Cuentas</a></li>
-          <li><a href="#">Inversiones</a></li>
-          <li><a href="#">Afore</a></li>
-          <li><a href="#">Impuestos</a></li>
-        </ul>
+      <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>-->
+      <a class="bank-logo" href="#"></a>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">My accounts</a></li>
+        <li><a href="#">Investments</a></li>
+        <!--<li><a href="#">Afore</a></li>-->
+        <li><a href="#">Taxes</a></li>
+      </ul>        
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-      <form class="navbar-form pull-right">
-          <a type="submit" ng-controller="LoginCtrl" class="btn btn-warning btn-sm"  ng-click="logout()">Cerrar sesi&oacute;n</a>
+      <form class="pull-right">
+        <!--<button type="button" class="btn btn-alertas">
+          <span class="glyphicon glyphicon-phone"></span>
+          alertas
+        </button>-->
+          <a type="submit" ng-controller="LoginCtrl" class="btn btn-logout"  ng-click="logout()">Sign out</a>
       </form>
       <ul class="nav navbar-nav pull-right user">
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown"> John Doe <strong class="caret"></strong></a>
+            <a href="" class="pull-left"> Ángel Buendía Cortes </a>
+            <a href=""class="dropdown-toggle icoMenu pull-left" role="button" data-toggle="dropdown"><img src="/images/icomenu.png"></a>
+            <a href="" class="icoFaq pull-left"><img src="/images/icofaq.png"></a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="/#/administration/accounts-clabe">Cuentas CLABE</a>
+                <a href="/#/administration/accounts-clabe">CLABE accounts</a>
               </li>
               <li>
-                <a href="/#/administration/contract">Contratos</a>
+                <a href="/#/administration/contract">Contracts</a>
               </li>
               <li>
-                <a href="/#/administration/configuration">Configuraci&oacute;n</a>
+                <a href="/#/administration/configuration">Configuration</a>
               </li>
               <li>
-                <a href="/#/administration/admin-card">Administraci&oacute;n de Tarjetas</a>
+                <a href="/#/administration/admin-card">Cards Management</a>
               </li>
               <li>
-                <a href="/#/administration/checks">Administraci&oacute;n de Chequeras</a>
+                <a href="/#/administration/checks">Checkbooks Management</a>
               </li>
             </ul>
           </li>
         </ul><!-- end nav pull-right-->
-    </div><!--End collapse navbar-collapse-->
    </div><!--End container-->
     {{errorMessage}}
   </div>
-</div>
+</header>

@@ -1,17 +1,20 @@
 <div class="right-section">
 
   <div class="submenu-blue">
-    <h5>Traspaso
-      <span ng-click="close()" class="glyphicon glyphicon-remove pull-right alose-button"></span>
+    <h5>Transfers
+      <div class="pull-right">
+        <button type="submit" ng-click="showAddBeneficiary()">Add beneficiary</button>
+        <button ng-click="close()">Close</button>
+      </div>
     </h5>
   </div>
 
-  <div class="side-block">
+   <!--<div class="side-block">
     <span class="pull-right">
       <button class="btn btn-default" type="submit" ng-click="showAddBeneficiary()">
         &nbsp;
         <span class="glyphicon glyphicon-user"></span>
-        <span class="glyphicon glyphicon-plus"></span>
+       <span class="glyphicon glyphicon-plus"></span>
         &nbsp;
       </button>
     </span>
@@ -19,10 +22,13 @@
     <br />
   </div>
   <p>
-    Cuenta de dep&oacute;sito:
-  </p>
-
-  <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
-    <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
-  </select>
+    Deposit account:
+  </p>-->
+<div class="paddingCenter">
+  <div class="styleSelect">
+    <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
+      <option data-icon="icon-calendar" value="">Transfer to</option>
+    </select>
+  </div>
+</div>
 </div>

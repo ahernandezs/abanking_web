@@ -4,10 +4,10 @@
     <div ng-show="token">
       <div class="submenu-yellow">
         <h5>
-          <span class="glyphicon glyphicon-phone pull-left"></span>
-          &nbsp
-          Ingresa tu clave din&aacute;mica
-          <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+          <span class="pull-left"></span>
+          Enter the code that appears on your phone
+          <span class="pull-right"></span>
+          <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
         </h5>
       </div>
 
@@ -15,12 +15,12 @@
         <div class="row">
           <div class="col-md-8">
             <div class="input-group">
-              <input name="dynamic_password" type="password" class="form-control" ng-class="{'alert-error' : transfer.error}" ng-model="transfer.dynamic_password" ng-minlength="6" ng-maxlength="6" maxlength="6" required/>
+              <input name="dynamic_password" type="password" ng-class="{'alert-error' : transfer.error}" ng-model="transfer.dynamic_password" ng-minlength="6" ng-maxlength="6" maxlength="6" required/>
             </div>
             <p class="alert-error-p" ng-show="transfer.error">{{transfer.error.message}}</p>
           </div>
           <div class="col-md-4 pull-right">
-            <button ng-click="applyTransferPayment()" type="button" class="btn btn-info" ng-disabled="transfer.sending || !paymentForm.dynamic_password.$valid">{{ transfer.sending ? 'Enviando ...' : 'Confirmar' }}</button>
+            <button ng-click="applyTransferPayment()" type="button" class="btn btn-info" ng-disabled="transfer.sending || !paymentForm.dynamic_password.$valid">{{ transfer.sending ? 'Sending ...' : 'Confirm' }}</button>
           </div>
         </div>
 
@@ -31,28 +31,46 @@
       <div class="submenu-yellow">
         <h5>
           <span class="glyphicon glyphicon-phone pull-left"></span>
-          &nbsp
-          Obteniendo token
+          Obtaining Token
           <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
         </h5>
       </div>
 
       <div class="yellow-message">
         <img class="pull-right" src="/images/orange-ajax-loader.gif">
-        <p>Se ha enviado una solicitud de autorizaci&oacute;n a su dispositivo m&oacute;vil, favor de aprobarla</p>
+        <p>We have sent a request for authorization to your mobile device, please approve</p>
       </div>
     </div>
 
-    <div class="side-block">
+    <!--<div class="side-block">
       <p>Cuenta de dep&oacute;sito</p>
       <br />
       <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
         <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
       </select>
 
+    </div>-->
+    <div class="paddingCenter">
+      <div class="styleSelect">
+        <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
+        <option data-icon="icon-calendar" value="">Select an account</option>
+      </select>
+      </div>
     </div>
-
-    <div class="side-block">
+    <div class="paddingCenter">
+        <input type="text" class="fAmount" placeholder="Amount" ng-model="transfer.amount">
+    </div>
+    <div class="paddingCenter">
+      <span>Payment day:</span>
+      <input type="text" class="pull-right" placeholder="Date" ng-model="transfer.date">
+    </div>
+    <div class="paddingCenter">
+        <input type="checkbox" ng-model="transfer.sendmail"/> Notify the recipient
+    </div>
+    <div class="paddingCenter" g-show="transfer.sendmail">
+      <textarea class="form-control input-sm" rows="4" ng-model="transfer.message">
+    </div>
+    <!--<div class="side-block">
       <div class="row">
         <div class="col-md-8">
           <p>Importe:</p>
@@ -88,7 +106,7 @@
           <textarea class="form-control input-sm" rows="4" ng-model="transfer.message">
         </div>
       </div>
-    </div>
+    </div>-->
 
   </form>
 

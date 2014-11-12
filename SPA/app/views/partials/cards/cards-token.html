@@ -3,15 +3,15 @@
   <div ng-show="token">
     <div class="submenu-yellow">
       <h5>
-        <span class="glyphicon glyphicon-phone pull-left"></span>
-        &nbsp
-        Tel&eacute;fono no disponible
-        <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        <span class="pull-left"></span>
+        Phone not available
+        <span class="pull-right"></span>
+        <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
       </h5>
     </div>
 
     <div class="yellow-message">
-      <p>Ingresa manualmente tu clave din&aacute;mica</p>
+      <p>Enter manually your dinamic key</p>
       <div class="row">
         <div class="col-md-8">
           <div class="input-group">
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-md-4 pull-right">
-          <button ng-click="applyCardPayment()" type="button" class="btn btn-info">Confirmar</button>
+          <button ng-click="applyCardPayment()" type="button" class="btn btn-info">Confirm</button>
         </div>
       </div>
 
@@ -30,47 +30,53 @@
   <div ng-show="!token">
     <div class="submenu-yellow">
       <h5>
-        <span class="glyphicon glyphicon-phone pull-left"></span>
-        &nbsp
-        Obteniendo token
-        <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        <span class="pull-left"></span>
+       Obtaining token
+        <span class="pull-right"></span>
       </h5>
     </div>
 
     <div class="yellow-message">
       <img class="pull-right" src="/images/orange-ajax-loader.gif">
-      <p>Se ha enviado una solicitud de autorizaci&oacute;n a su dispositivo m&oacute;vil, favor de aprobarla</p>
+      <p>We have sent a request for authorization to your mobile device, please approve</p>
     </div>
   </div> 
-
-  <div class="side-block">
-    <p>Tarjeta de cr&oacute;dito a pagar:</p>
+  <div class="paddingCenter">
+      <div class="styleSelect">
+        <select class="form-control" ng-model="card.current" ng-options="a.name + ' ' + a.lastdigits for a in cards" ng-change="updateCard()">
+      <option value="">Select a card</option>
+    </select>
+      </div>
+  </div>
+<div class="paddingCenter">
+ 
+    <!--<p>Credit card to pay:</p>
     <br />
     <select class="form-control" ng-model="card.current" ng-options="a.name + ' ' + a.lastdigits for a in cards" ng-change="updateCard()">
-      <option value="">Selecciona una tarjeta</option>
-    </select>
+      <option value="">Select a card</option>
+    </select>-->
 
     <div class="amounts-section">
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio2" value="minimal" checked>
-          Pago m&iacute;nimo
+          Min payment
           <span class="pull-right amount">$500.00</span>
         </label>
       </div>
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio3" value="total">
-          Pago sin intereses
+          Without interest
           <span class="pull-right amount">$4,500.00</span>
         </label>
       </div>
-      <div class="radio">
+      <div class="radio overflowH">
         <label>
           <div class="row">
             <div class="col-xs-6">
               <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio4" value="other">
-              Otra cantidad
+              Other amount
             </div>
             <div class="col-xs-6">
               <input type="text" class="form-control input-sm">
@@ -79,14 +85,22 @@
         </label>
       </div>
     </div>
-  </div>
 
+  </div>
+  <div class="paddingCenter">
+    <span>Payment day:</span>
+    <input type="text" class="pull-right" placeholder="Today" value="19/02/2014">
+  </div>
+<div class="paddingCenter">
+  <input type="checkbox"/> Save as frequent
+</div>
+<!--
   <div class="side-block">
     <div class="row">
       <div class="form-group">
         <div class="col-sm-3">
           <span class="glyphicon glyphicon-calendar"></span>
-          Fecha:
+          Date:
         </div>
         <div class="col-sm-5">
           <input type="text" class="form-control input-sm" placeholder="Fecha" value="19/02/2014">
@@ -97,11 +111,11 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>
-            <input type="checkbox"/> Guardar como operaci&oacute;n frecuente
+            <input type="checkbox"/> Save as frequent
           </label>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
 </div>

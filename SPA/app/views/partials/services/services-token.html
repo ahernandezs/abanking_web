@@ -3,15 +3,15 @@
   <div ng-show="token">
     <div class="submenu-yellow">
       <h5>
-        <span class="glyphicon glyphicon-phone pull-left"></span>
-        &nbsp
-        Tel&eacute;fono no disponible
-        <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        <span class="pull-left"></span>
+        Phone not available
+        <span class="pull-right"></span>
+        <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
       </h5>
     </div>
 
     <div class="yellow-message">
-      <p>Ingresa manualmente tu clave din&aacute;mica</p>
+      <p>Enter manually your dinamic key</p>
       <div class="row">
         <div class="col-md-8">
           <div class="input-group">
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-md-4 pull-right">
-          <button ng-click="applyServicePayment()" type="button" class="btn btn-info">Confirmar</button>
+          <button ng-click="applyServicePayment()" type="button" class="btn btn-info">Confirm</button>
         </div>
       </div>
 
@@ -30,16 +30,16 @@
   <div ng-show="!token">
     <div class="submenu-yellow">
       <h5>
-        <span class="glyphicon glyphicon-phone pull-left"></span>
-        &nbsp
-        Obteniendo token
-        <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        <span class="pull-left"></span>
+        Obtaining token
+        <span class="pull-right"></span>
+        <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
       </h5>
     </div>
 
     <div class="yellow-message">
       <img class="pull-right" src="/images/orange-ajax-loader.gif">
-      <p>Se ha enviado una solicitud de autorizaci&oacute;n a su dispositivo m&oacute;vil, favor de aprobarla</p>
+      <p>We have sent a request for authorization to your mobile device, please approve</p>
     </div>
   </div> 
 
@@ -47,20 +47,39 @@
     <img class="img-rounded" src="/images/services/telmex.png">
   </div>
 
-  <div class="side-block">
+<div class="paddingCenter">
+  <span>Last transfer: $750.00 12/02/2014</span>
+        <input type="text" class="pull-right" placeholder="Monto" autofocus value="248.00" style="background:white;width:30%;">
+</div>
+<div class="paddingCenter">
+  <span>Capture line:</span>
+        <input type="text" class="pull-right" placeholder="Línea de captura" value="MMM130347384573" style="background:white;">
+</div>
+<div class="paddingCenter">
+  <span>Global digit:</span>
+        <input type="text" class="pull-right" placeholder="Dígito global" value="8797" style="background:white;">
+</div>
+<div class="paddingCenter">
+  <span>Payment day:</span>
+  <input type="text" class="pull-right" placeholder="Fecha" value="19/02/2014">
+</div>
+<div class="paddingCenter">
+  <input type="checkbox"/> Save as frequent
+</div>
+  <!--<div class="side-block">
     <div class="row">
       <div class="col-md-12">
-        <p>&Uacute;ltimo traspaso: $750.00 12/02/2014</p>
+        <p>Last transfer: $750.00 12/02/2014</p>
         <input type="text" class="form-control" placeholder="Monto" autofocus value="248.00">
       </div>
     </div>
     <div class="row">
       <div class="col-md-8">
-        <p>L&iacute;nea de captura:</p>
+        <p>Capture line:</p>
         <input type="text" class="form-control input-sm" placeholder="Línea de captura" value="MMM130347384573">
       </div>
       <div class="col-md-4">
-        <p>Dígito global:</p>
+        <p>Global digit:</p>
         <input type="text" class="form-control input-sm" placeholder="Dígito global" value="8797">
       </div>
     </div>
@@ -71,7 +90,7 @@
       <div class="form-group">
         <div class="col-sm-3">
           <span class="glyphicon glyphicon-calendar"></span>
-          Fecha:
+          Payment date:
         </div>
         <div class="col-sm-5">
           <input type="text" class="form-control input-sm" placeholder="Fecha" value="19/02/2014">
@@ -87,6 +106,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
 </div>

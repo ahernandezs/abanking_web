@@ -1,11 +1,20 @@
 <div class="right-section" >
 	<div class="submenu-green">
-		 <h5>La tarjeta ha sido dado de alta: 
-		   <span ng-click="close()" class="glyphicon glyphicon-remove pull-right alose-button"></span>
+		 <h5><span class="pull-left iApprobed"></span>The card has been added
+		   <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right alose-button"></span>-->
 		 </h5>
 	</div>
   	<form>
-	  <div class="side-block">
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.name" disabled> </input>
+  		</div>
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.card" disabled>
+  		</div>
+  		<div class="paddingCenter">
+  			<input type="text" class="form-control input-normal" ng-model="benef.amount" disabled>
+  		</div>
+	  <!--<div class="side-block">
 	  	<p>Nombre:</p>
 	  	<input type="text" class="form-control input-normal" ng-model="benef.name" disabled> </input>
 	  	<br>
@@ -14,6 +23,6 @@
 	  	<br>
 	  	<p>Importe m&aacute;ximo:</p>
 	  	<input type="text" class="form-control input-normal" ng-model="benef.amount" disabled>
-	  </div>
+	  </div>-->
 	</form>
 </div>
