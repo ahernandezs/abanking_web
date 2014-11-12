@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-5">
           <p>Importe:</p>
-          &nbsp <label for="">{{transfer.amount | currency}}</label>
+          &nbsp <label for="">{{transferInformation.amount | currency}}</label>
         </div>
       </div>
     </div>
@@ -48,18 +48,18 @@
         </div>
         <div class="col-md-5">
           <p>Fecha:</p>
-          &nbsp <label for="">{{transfer.date}}</label>
+          &nbsp <label for="">{{transferInformation.date}}</label>
         </div>
       </div>
     </div>
 
-    <div class="side-block" ng-show="transfer.sendmail">
+    <div class="side-block" ng-show="transferInformation.sendmail">
       <label>
         Beneficiario notificado
       </label>
     </div>
 
-    <div class="side-block" ng-show="transfer.sendmail">
+    <div class="side-block" ng-show="transferInformation.sendmail">
       <div class="row">
         <div class="col-md-7">
           <p>Email:</p>
@@ -67,7 +67,7 @@
         </div>
         <div class="col-md-5">
           <p>Mensaje:</p>
-          &nbsp <label for="">{{transfer.message}}</label>
+          &nbsp <label for="">{{transferInformation.message}}</label>
         </div>
       </div>
     </div>

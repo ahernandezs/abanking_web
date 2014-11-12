@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', '$timeout', 'accountsProvider','thirdAccountProvider',
-                                    function($rootScope, $scope, $location, $routeParams, $timeout, accountsProvider, thirdAccountProvider) {
+angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', '$timeout', 'accountsProvider','thirdAccountProvider', 'transferService',
+                                    function($rootScope, $scope, $location, $routeParams, $timeout, accountsProvider, thirdAccountProvider, transferService) {
 
   try{
     var index = accountsProvider.getAccountIndex($routeParams.accountId);
@@ -181,7 +181,7 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
       current : null
     };
 
-    $scope.transfer = {
+    $scope.transferInformation = {
       amount: "",
       date: today,
       sendmail: false,
@@ -228,6 +228,12 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
   }
 
   $scope.applyTransferPayment = function() {
+    var sourceAccount = $scope.currentAccount;
+    var transferInformation = new Object();
+    transferInformation['account_id_destination'] = $scope.transferInformation.thirdAccountDestination._account_id;
+    transferInformation['amount'] = $scope.transferInformation.amount;
+    transferInformation['description'] = $scope.transferInformation.message;
+    transferService.transfer(sourceAccount._account_id, transferInformation);
     $scope.selection = 'applytransferpayment';
   }
 

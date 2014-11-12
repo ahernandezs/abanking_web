@@ -9,7 +9,7 @@
   <div class="side-block">
     <p>Cuenta de dep&oacute;sito</p>
     <br />
-    <select class="form-control" ng-model="beneficiary.current" ng-options="a.alias + ' - ' + a.currency + ' - ' + a.lastdigits for a in beneficiaries" ng-change="updateTransfer()">
+    <select class="form-control" ng-model="transferInformation.thirdAccountDestination" ng-options="transferInformation.thirdAccountDestination" ng-options="thirdAccount.alias + ' - ' + thirdAccount.currency + ' - ' + thirdAccount.lastdigits for thirdAccount in thirdAccounts">
       <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
     </select>
 
@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-md-8">
         <p>Importe:</p>
-        <input type="text" class="form-control input-sm" placeholder="Monto" ng-model="transfer.amount" numbers-only="numbers-only" maxlength="25">
+        <input type="text" class="form-control input-sm" placeholder="Monto" ng-model="transferInformation.amount" numbers-only="numbers-only" maxlength="25">
       </div>
       <div class="col-md-4">
         <p>
@@ -27,7 +27,7 @@
         Fecha:
         </p>
 
-        <input type="text" class="form-control input-sm" placeholder="Fecha" ng-model="transfer.date" jqdatepicker>
+        <input type="text" class="form-control input-sm" placeholder="Fecha" ng-model="transferInformation.date" jqdatepicker>
       </div>
     </div>
   </div>
@@ -38,18 +38,18 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>
-            <input type="checkbox" ng-model="transfer.sendmail"/> Notificar al beneficiario
+            <input type="checkbox" ng-model="transferInformation.sendmail"/> Notificar al beneficiario
           </label>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="side-block" ng-show="transfer.sendmail">
+  <div class="side-block" ng-show="transferInformation.sendmail">
     <div class="row">
       <div class="col-md-12">
         <p>Mensaje:</p>
-        <textarea class="form-control input-sm" rows="4" ng-model="transfer.message"></textarea>
+        <textarea class="form-control input-sm" rows="4" ng-model="transferInformation.message"></textarea>
       </div>
     </div>
   </div>
