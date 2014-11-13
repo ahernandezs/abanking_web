@@ -167,7 +167,7 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
   }
 
 
-  var transferInitialStep = 'transfers';
+  var transferInitialStep = 'transferChooseDestination';
   var transferInformationStep = 'transferspayment';
   var transferOtpStep = 'transferspaymenttoken';
   var transferEndStep = 'applytransferpayment';
@@ -228,8 +228,14 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
     transferInformation['account_id_destination'] = $scope.transferInformation.thirdAccountDestination._account_id;
     transferInformation['amount'] = $scope.transferInformation.amount;
     transferInformation['description'] = "traspaso a " + $scope.transferInformation.thirdAccountDestination.alias;
-    transferService.transfer(sourceAccount._account_id, transferInformation);
-    $scope.transferStep = transferEndStep;
+    var transferPromise = transferService.transfer(sourceAccount._account_id, transferInformation);
+    transferPromise.then(function(data) {
+      $scope.transferInformation['transactionId'] = data['_transaction_id'];
+      $scope.selection = transferEndStep;
+    }, function(reason) {
+      alert('Failed: ' + reason);
+    });
+    
   }
 
   /**
