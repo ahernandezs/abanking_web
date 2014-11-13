@@ -248,13 +248,19 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
     }, 90000);
   }
 
-  $scope.$on('pubnubMessageReceived', function(event, message) {
+  $scope.$on('transactionAppliedRemotely', function(event, message) {
     console.log("pubnub message received in project controller",message);
     if(message.status === "ACCEPTED") {
       // The message is for me!! Do something with it
       $timeout.cancel($scope.onlineTransaction);
       $scope.selection = 'applytransferpayment';
     } else {
+      $timeout.cancel($scope.onlineTransaction);
+      $scope.token = true;
+      $scope.transfer.sending = false;
+      $scope.transfer.error = {
+        message: "You have declined this transaction from your device"
+      };
     }
   });
 

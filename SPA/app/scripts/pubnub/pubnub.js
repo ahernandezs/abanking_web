@@ -28,7 +28,7 @@ app.run(['$rootScope', '$timeout', 'PubNub', 'accountsProvider', function ($root
                accountsProvider.addNewTransaction(payload.message.user, payload.message.transaction, payload.message.account);
             }
             if (messageType == 'online') {
-              $rootScope.$broadcast('pubnubMessageReceived', payload.message); 
+              $rootScope.$broadcast('transactionAppliedRemotely', payload.message); 
               //if(payload.message.status === 'ACCEPTED') {
               //  $rootScope.$broadcast('pubnubMessageReceived', payload.message); 
 

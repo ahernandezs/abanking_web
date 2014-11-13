@@ -12,7 +12,7 @@ body, html, #mainDiv {
 }
 //VARS
 $primary-color:#054c87; //azul hover
-$secondary-color:black; 
+$secondary-color:black;
 $aux-color:#05589d; //botones
 
 //MIXINS
@@ -340,7 +340,7 @@ section.scroll{
   position: relative;
 }
 section.scroll > .scroll{
-  width:200% !important; 
+  width:200% !important;
 }
 .account > a{
       display: block;
@@ -360,7 +360,7 @@ section.scroll > .scroll{
     overflow: hidden;
     @include border_radius(5px);
     @include box_shadow(#e3e3e3);
-  
+
 
     img {
         width: auto;
@@ -392,9 +392,9 @@ section.scroll > .scroll{
         padding: 5px 0;
         height: 144px;
         line-height: 25px;
-        
+
         .col-xs-4{
-          padding: 0; 
+          padding: 0;
         }
 
         .amount, .available-amount {
@@ -596,7 +596,7 @@ section.scroll > .scroll{
     h4 {
         font-size: 22px;
         color:$primary-color;
-      
+
       p{
         font-size: 13px;
         color:#434040;
@@ -1220,4 +1220,8 @@ input.input-box{
 
 .submenu-blue.transfer{
     overflow:hidden;
+}
+
+.alert-error-p {
+  color: red;
 }
