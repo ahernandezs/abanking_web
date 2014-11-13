@@ -42,7 +42,7 @@
           <h5>Pagar:</h5>
             <button ng-click="showServices()" type="button" class="btn"><span class="glyphicon glyphicon-briefcase"></span> Servicios</button>
             <button ng-click="showCards()" type="button" class="btn"><span class="glyphicon glyphicon-credit-card"></span> Tarjetas</button>
-            <button ng-click="showTransfers()" type="button" class="btn"><span class="glyphicon glyphicon-transfer"></span> Traspasos</button>
+            <button ng-click="goToTransferInitialStep()" type="button" class="btn"><span class="glyphicon glyphicon-transfer"></span> Traspasos</button>
         </div>
       </div>
     </div>
@@ -107,17 +107,8 @@
         <div ng-switch-when="applycardpayment">
           <div ng-include="'views/partials/cards/card-applied.html'"></div>
         </div>
-        <div ng-switch-when="transfers">
+        <div ng-switch-when="transfer">
           <div ng-include="'views/partials/transfers/transfers.html'"></div>
-        </div>
-        <div ng-switch-when="transferspayment">
-          <div ng-include="'views/partials/transfers/transfers-payment.html'"></div>
-        </div>
-        <div ng-switch-when="transferspaymenttoken">
-          <div ng-include="'views/partials/transfers/transfers-token.html'"></div>
-        </div>
-        <div ng-switch-when="applytransferpayment">
-          <div ng-include="'views/partials/transfers/transfer-applied.html'"></div>
         </div>
         <div ng-switch-when="addbeneficiary">
           <div ng-include="'views/partials/transfers/add-beneficiary.html'"></div>
