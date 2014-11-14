@@ -245,7 +245,7 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
 
     $scope.onlineTransaction = $timeout( function() {
       $scope.token = true;
-    }, 90000);
+    }, 50000);
   }
 
   $scope.$on('transactionAppliedRemotely', function(event, message) {
