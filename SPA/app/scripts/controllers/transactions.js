@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', '$timeout', 'accountsProvider','thirdAccountProvider',
-                                    function($rootScope, $scope, $location, $routeParams, $timeout, accountsProvider, thirdAccountProvider) {
+angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', '$timeout', 'accountsProvider','thirdAccountProvider', 'transferService',
+                                    function($rootScope, $scope, $location, $routeParams, $timeout, accountsProvider, thirdAccountProvider, transferService) {
 
   try{
     var index = accountsProvider.getAccountIndex($routeParams.accountId);
@@ -166,8 +166,18 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
     $scope.selection = 'applycardpayment';
   }
 
-  $scope.showTransfers = function() {
-    $scope.selection = "transfers";
+
+  var transferInitialStep = 'transferChooseDestination';
+  var transferInformationStep = 'transferspayment';
+  var transferOtpStep = 'transferspaymenttoken';
+  var transferEndStep = 'applytransferpayment';
+  
+  /**
+   * the transfer to third-account flow: initiate the flow (first step)
+   */
+  $scope.goToTransferInitialStep = function() {
+    $scope.selection = 'transfer';
+    $scope.transferStep = transferInitialStep;
     $scope.currentTransaction = undefined;
 
     var today = new Date();
@@ -177,32 +187,93 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
     var yyyy = today.getFullYear();
     if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = dd+'/'+mm+'/'+yyyy;
 
-    $scope.beneficiary = {
-      current : null
-    };
+    $scope.thirdAccountDestination = null;
 
-    $scope.transfer = {
+    $scope.transferInformation = {
       amount: "",
       date: today,
       sendmail: false,
+      otp: '',
       message: ""
     };
 
     thirdAccountProvider.getThirdAccounts().then(
       function(data){
-        $scope.beneficiaries = $rootScope.thirdAccounts.beneficiaries;
+        $scope.thirdAccounts = $rootScope.thirdAccounts;
       }
     );
-
   }
 
-  $scope.showAddBeneficiary = function(){
-    $scope.selection="addbeneficiary";
+  $scope.goToTransferInformationStep = function() {
+    $scope.transferStep = transferInformationStep;
+  }
+  /**
+    * manage the transfer webflow
+    */
+  $scope.goToTransferOtpStep = function() {
+    $scope.transferStep = transferOtpStep;
+    $scope.token = undefined;
+    $timeout( function() {
+      $scope.token = true;
+      },2000
+    );
   }
 
-  $scope.updateTransfer = function() {
-    $scope.selection = "transferspayment";
-  }    
+  /**
+   * the transfer method
+   */
+  $scope.applyTransferPayment = function() {
+    var sourceAccount = $scope.currentAccount;
+    var transferInformation = new Object();
+    transferInformation['account_id_destination'] = $scope.transferInformation.thirdAccountDestination._account_id;
+    transferInformation['amount'] = $scope.transferInformation.amount;
+    transferInformation['description'] = "traspaso a " + $scope.transferInformation.thirdAccountDestination.alias;
+    var transferPromise = transferService.transfer(sourceAccount._account_id, transferInformation);
+    transferPromise.then(function(data) {
+      $scope.transferInformation['transactionId'] = data['_transaction_id'];
+      $scope.selection = transferEndStep;
+    }, function(reason) {
+      alert('Failed: ' + reason);
+    });
+    
+  }
+
+  /**
+   * method defining if the transfer's information (amount, currency, date...) must be shown or not 
+   * depending on the webflow step
+   */
+  $scope.showTransferInformationInput = function() {
+    var result = false;
+    if($scope.transferStep == transferInformationStep || $scope.transferStep == transferOtpStep) {
+      result = true;
+    }
+    return result;
+  }
+
+  /**
+   * method defining if the add-beneficiary button must be shown or not 
+   * depending on the webflow step
+   */
+  $scope.showAddThirdAccountInput = function() {
+    var result = false;
+    if($scope.transferStep == transferInitialStep) {
+      result = true;
+    }
+    return result;
+  }
+
+  /**
+   * method defining if the otp input must be shown or not 
+   * depending on the webflow step
+   */
+  $scope.showTokenInput = function() {
+    var result = false;
+    if($scope.transferStep == transferOtpStep) {
+      result = true;
+    }
+    return result;
+  }
+
 
   $scope.authorize = function(nombre, clabe1, importe, correo, telefono){
      console.log($scope.names);
@@ -217,20 +288,8 @@ angular.module('spaApp').controller('TransactionsCtrl', ['$rootScope', '$scope',
   $scope.test = function(){
     console.log ("begin invoke function");
   }
+
   
-  $scope.showTransferPaymentToken = function() {
-    $scope.selection = 'transferspaymenttoken';
-    $scope.token = undefined;
-
-    $timeout( function() {
-      $scope.token = true;
-    },2000);
-  }
-
-  $scope.applyTransferPayment = function() {
-    $scope.selection = 'applytransferpayment';
-  }
-
   $scope.showAddBeneficiary = function() {
     $scope.selection = "addbeneficiary";
     $scope.benef={

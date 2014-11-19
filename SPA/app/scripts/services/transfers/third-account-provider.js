@@ -10,7 +10,7 @@ angular.module('spaApp')
 
         if(!$rootScope.thirdAccounts) {
           thirdAccountService.getThirdAcounts().success(function(data, status, headers) {
-            $rootScope.thirdAccounts = data;
+            $rootScope.thirdAccounts = data.third_accounts;
             deferred.resolve();
           }).error(function(data, status) {
             return deferred.reject('Error getting third accounts');

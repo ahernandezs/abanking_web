@@ -6,7 +6,52 @@
     </h5>
   </div>
 
-  <div class="side-block">
+  <div ng-show="showTokenInput()">
+    <div ng-show="token">
+      <div class="submenu-yellow">
+        <h5>
+          <span class="glyphicon glyphicon-phone pull-left"></span>
+          &nbsp
+          Tel&eacute;fono no disponible
+          <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        </h5>
+      </div>
+
+      <div class="yellow-message">
+        <p>Ingresa manualmente tu clave din&aacute;mica</p>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="input-group">
+              <span class="input-group-addon">23456789</span>
+              <input type="password" class="form-control" maxlength="15" ng-model="transferInformation.otp"/>
+            </div>
+          </div>
+          <div class="col-md-4 pull-right">
+            <button ng-click="applyTransferPayment()" type="button" class="btn btn-info">Confirmar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div ng-show="!token">
+      <div class="submenu-yellow">
+        <h5>
+          <span class="glyphicon glyphicon-phone pull-left"></span>
+          &nbsp
+          Obteniendo token
+          <span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>
+        </h5>
+      </div>
+
+      <div class="yellow-message">
+        <img class="pull-right" src="/images/orange-ajax-loader.gif">
+        <p>Se ha enviado una solicitud de autorizaci&oacute;n a su dispositivo m&oacute;vil, favor de aprobarla</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-block" ng-show="showAddThirdAccountInput()">
     <span class="pull-right">
       <button class="btn btn-default" type="submit" ng-click="showAddBeneficiary()">
         &nbsp;
@@ -22,7 +67,52 @@
     Cuenta de dep&oacute;sito:
   </p>
 
-  <select class="form-control" ng-model="beneficiary.current" ng-options="a.alias + ' - ' + a.currency + ' - ' + a.lastdigits for a in beneficiaries" ng-change="updateTransfer()">
+  <select class="form-control" ng-model="transferInformation.thirdAccountDestination" ng-options="thirdAccount.alias + ' - ' + thirdAccount.currency + ' - ' + thirdAccount.lastdigits for thirdAccount in thirdAccounts" ng-change="goToTransferInformationStep()">
     <option data-icon="icon-calendar" value="">Seleccione una cuenta</option>
   </select>
+
+  <div ng-show="showTransferInformationInput()">
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-8">
+          <p>Importe:</p>
+          <input type="text" class="form-control input-sm" placeholder="Monto" ng-model="transferInformation.amount" numbers-only="numbers-only" maxlength="25">
+        </div>
+        <div class="col-md-4">
+          <p>
+          <span class="glyphicon glyphicon-calendar"></span>
+          Fecha:
+          </p>
+
+          <input type="text" class="form-control input-sm" placeholder="Fecha" ng-model="transferInformation.date" jqdatepicker>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="side-block">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <input type="checkbox" ng-model="transferInformation.sendmail"/> Notificar al beneficiario
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-block" ng-show="transferInformation.sendmail">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Mensaje:</p>
+          <textarea class="form-control input-sm" rows="4" ng-model="transferInformation.message"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button ng-click="close()" type="submit" class="btn btn-default btn-block">Cancelar</button>
+
+    <button ng-click="goToTransferOtpStep()" type="submit" class="btn btn-success btn-block" ng-disabled="showTokenInput()">Traspasar</button>
+  </div>
 </div>
