@@ -8,10 +8,10 @@
        <div href="" ng-class="currentAccount.account_type | lowercase" class="small"></div>-->
         <h4 class="account-name pull-left">{{currentAccount.name}} <span class="last-digits">{{currentAccount.last_digits}}</span></h4>
         <div class="pull-right">
-            <button ng-click="showCards()" type="button" class="btn" onclick="$('.pull-right .btn').removeClass('active');$(this).addClass('active');"><span class="tcredito"></span> To pay card</button>
-            <button ng-click="showServices()" type="button" class="btn" onclick="$('.pull-right .btn').removeClass('active');$(this).addClass('active');"><span class="tservicios"></span> To pay service</button>
-            <button ng-click="showTransfers()" type="button" class="btn" onclick="$('.pull-right .btn').removeClass('active');$(this).addClass('active');"><span class="ttransfer"></span> To transfer</button>
-            <button type="button" class="btn"><span class="tta"></span> Mobile recharge</button>
+            <button ng-click="showCards()" type="button" class="btn" onclick="$('.pull-right .btn').removeClass('active');$(this).addClass('active');"><span class="tcredito"></span> Pay card</button>
+            <button ng-click="showServices()" type="button" class="btn" onclick="$('.pull-right .btn').removeClass('active');$(this).addClass('active');"><span class="tservicios"></span> Pay service</button>
+            <button ng-click="showTransfers()" type="button" class="btn" onclick="$('.pull-right .btn').removeClass('active');$(this).addClass('active');"><span class="ttransfer"></span> Transfer</button>
+            <button type="button" class="btn"><span class="tta"></span> Mobile topup</button>
         </div>
     </div>
   </div>
@@ -32,12 +32,12 @@
           <div class="col-md-6">
             <div class="account-menu-buttons pull-right">
               <h5>Ordenar por:</h5>
-              
-                <button type="button" class="btn" ng-click="changeSorting('created_at')">Fecha 
+
+                <button type="button" class="btn" ng-click="changeSorting('created_at')">Fecha
                   <span ng-class="selectSortingClass('created_at')" class="glyphicon"/></button>
-                <button type="button" class="btn" ng-click="changeSorting('amount')">Monto 
+                <button type="button" class="btn" ng-click="changeSorting('amount')">Monto
                   <span ng-class="selectSortingClass('amount')" class="glyphicon"/></button>
-              
+
             </div>
           </div>
         </div>
@@ -67,19 +67,19 @@
             </div>
             <div class="nuevosFiltros nuevo">
             <div class="col-md-2">
-                <span ng-click="changeSorting('created_at')">DATE 
+                <span ng-click="changeSorting('created_at')">DATE
                   <span ng-class="selectSortingClass('created_at')" class="glyphicon"/></span>
               </div>
               <div class="col-md-5">
-                <span ng-click="changeSorting('description')">DESCRIPTION 
+                <span ng-click="changeSorting('description')">DESCRIPTION
                   <span ng-class="selectSortingClass('description')" class="glyphicon"/></span>
               </div>
               <div class="col-md-3">
-                <span ng-click="changeSorting('type')">TYPE 
+                <span ng-click="changeSorting('type')">TYPE
                   <span ng-class="selectSortingClass('type')" class="glyphicon"/></span>
               </div>
               <div class="col-md-2">
-                <span ng-click="changeSorting('amount')">AMOUNT 
+                <span ng-click="changeSorting('amount')">AMOUNT
                   <span ng-class="selectSortingClass('amount')" class="glyphicon"/></span>
               </div>
               </div>
