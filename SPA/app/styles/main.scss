@@ -46,6 +46,7 @@ $aux-color:#e63b31;
 
 //BOOTSTRAP RESET
 .ui-datepicker{
+  display: none;
   background:white;
   padding:10px;
   @include border_radius(5px);
@@ -409,7 +410,12 @@ section.scroll > .scroll{
         }
     }
 }
-
+.buttons {
+  height: 40px;
+  .btn{
+    padding:7px 10px;
+  }
+}
 .banner {
     margin: 10px 0px;
 }
@@ -578,9 +584,9 @@ section.scroll > .scroll{
 }
 
 .right-section-default {
-  position: fixed;
+  /*position: fixed;
   width: 30%;
-  top: 220px;
+  top: 220px;*/
   background:#e6e6e6;
   padding: 15px;
   @include border_radius(5px);
@@ -593,12 +599,11 @@ section.scroll > .scroll{
 }
 
 .right-section {
-  position: fixed;
+  /*position: fixed;
   width: 30%;
   top: 220px;
-  z-index: 901;
+  z-index: 901;*/
   @include border_radius(5px);
-  overflow: hidden;
 
   .left-inner-addon, p{
     margin:10px;
@@ -617,17 +622,20 @@ section.scroll > .scroll{
     background:$primary-color;
     padding: 2px 20px;
     color: #FFF;
+    @include border_radius(5px);
   }
 
   .submenu-yellow {
     background-color: #FC992E;
     padding: 2px 20px;
     color: #FFF;
+    @include border_radius(5px);
   }
 
   .yellow-message {
     background-color: #FFECCC;
     padding: 20px 20px;
+    @include border_radius(5px);
 
     img {
       margin: 0 10px 0 20px;
@@ -638,6 +646,7 @@ section.scroll > .scroll{
     background-color: #08D4A5;
     padding: 2px 20px;
     color: #FFF;
+    @include border_radius(5px);
   }
 
   .green-message {
@@ -900,4 +909,17 @@ input.input-box{
 
 .submenu-blue.transfer{
     overflow:hidden;
+    padding:10px 0;
+    .btn{
+      display: block;
+      width:70%;
+      margin: auto;
+      padding:6px 10px;
+    }
+    .btn-primary{
+      background:$aux-color;
+    }
+    .btn-warning{
+      background:$secondary-color;
+    }
 }
