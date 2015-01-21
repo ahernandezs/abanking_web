@@ -14,7 +14,7 @@ angular.module('spaApp').factory('httpInterceptor', ['$q', '$window', '$location
         $location.url('/login');
       }
 
-      if (response.status === 400 || response.status === 503 || response.status === 500) {
+      if (response.status === 400 || response.status === 403 || response.status === 503 || response.status === 500) {
         $rootScope.session_token = null;
         console.log("Status 400 or 503");
         $location.url('/login');
