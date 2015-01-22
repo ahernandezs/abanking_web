@@ -90,6 +90,8 @@ $aux-color3:#260472; //azul oscuro
 
     .home_header {
         color: #FFF;
+        font-size: 1.2em;
+        text-shadow: 2px 2px 3px black;
 
         p {
             margin-top: 20px;
@@ -171,11 +173,12 @@ $aux-color3:#260472; //azul oscuro
     }
     .home_footer {
         color: #FFF;
+        text-shadow:1px 1px 2px black;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        font-size: 11px;
+        font-size: 0.9em;
 
         a, a:hover {
             color: #FFF;
@@ -472,8 +475,8 @@ section.scroll > .scroll{
 }
 
 .footer {
-    background: #FFFFFF;
-    color: #999999;
+    background: $aux-color; //#FFFFFF;
+    color: white; //#999999;
     font-size: 11px;
     position: fixed;
     bottom: 0;
@@ -483,9 +486,9 @@ section.scroll > .scroll{
     font-family: Arial, sans-serif;
 
     a, a:hover {
-        color: #999999;
+        color: white; //#999999;
         padding:0 7px;
-        border-left:1px solid #999999;
+        border-left:1px solid white; //#999999;
     }
     a:first-child{
       margin-left: 5px;
