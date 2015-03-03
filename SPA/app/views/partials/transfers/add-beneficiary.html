@@ -3,8 +3,8 @@
   		<div ng-show="myForm.$valid">
 			<div class="submenu-blue transfer">
 			  	<div class="col-md-12">
-			  		<button type="submit" class="addB"><span>Add</span></button>
-			  		<button ng-click="close()"><span>Cancel</span></button>
+			  		<button type="submit" class="addB"><span>Agregar</span></button>
+			  		<button ng-click="close()"><span>Cancelar</span></button>
 			  		<!--<div class="col-md-6">
 						<button type="submit"><span>Add</span></button>
 					</div>
@@ -16,25 +16,25 @@
 		</div><!--end ng-show-->
   		<div ng-hide="myForm.$valid">
 		  <div class="submenu-blue">
-		    <h5>Add beneficiary:
-		      <button ng-click="close()" class="pull-right">Close</button>
+		    <h5>Agregar beneficiario:
+		      <button ng-click="close()" class="pull-right">Cerrar</button>
 		    </h5>
 		  </div>				
 		</div>
 <div class="paddingCenter">
-	<input type="text" name="nombre" placeholder="Name" class="form-control input-normal" ng-model="benef.name" ng-pristine ng-invalid required>
+	<input type="text" name="nombre" placeholder="Nombre" class="form-control input-normal" ng-model="benef.name" ng-pristine ng-invalid required>
 </div>
 <div class="paddingCenter">
-	<input type="text" name="clabe" class="form-control input-normal" placeholder="CLABE / Card / Mobile" ng-model="benef.clabe" ng-pristine ng-invalid required>
+	<input type="text" name="clabe" class="form-control input-normal" placeholder="CLABE / Card / Móvil" ng-model="benef.clabe" ng-pristine ng-invalid required>
 </div>
 <div class="paddingCenter">
-	<input type="number" name="importe" placeholder="Max amount" class="form-control input-normal" ng-model="benef.amount" min="0" ng-pristine ng-invalid required>
+	<input type="number" name="importe" placeholder="Cantidad máxima" class="form-control input-normal" ng-model="benef.amount" min="0" ng-pristine ng-invalid required>
 </div>
 <div class="paddingCenter">
 	<input type="email" name="correo" placeholder="Email" class="form-control input-normal" ng-model="benef.email" ng-pristine ng-invalid required>
 </div>
 <div class="paddingCenter">
-	<input type="number" name="telefono" class="form-control input-normal" placeholder="Mobile"  ng-model="benef.phone" ng-pristine ng-invalid ng-minlength="10" ng-maxlenth="10" placeholder="10 d&iacute;gitos" required>
+	<input type="number" name="telefono" class="form-control input-normal" placeholder="Móvil"  ng-model="benef.phone" ng-pristine ng-invalid ng-minlength="10" ng-maxlenth="10" placeholder="10 d&iacute;gitos" required>
 </div>
 		<!--end ng-hide-->
 	<!--<div class="side-block">

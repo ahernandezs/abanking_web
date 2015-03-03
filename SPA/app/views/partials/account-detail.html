@@ -1,13 +1,13 @@
 <div class="right-section-default">
 
   <div class="detail-header">
-    <h3>Account detail:</h3>
+    <h3>Detalle de cuenta:</h3>
     <span class="pull-right">{{currentAccount.name}} {{currentAccount.last_digits}}</span>
   </div>
 
   <div class="paddingCenter" ng-if="currentAccount.account_type == 'CREDIT_CARD'">
     <p class="overflowH">
-    <strong>Balance date:</strong>
+    <strong>Fecha de corte:</strong>
     <span class="pull-right">
       {{currentAccount.cut_date | date:'mediumDate'}}
     </span>
@@ -17,21 +17,21 @@
       <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio1" value="current" checked>
-          Total payment
+          Pago total
           <span class="pull-right amount">{{currentAccount.balance.current | currency}}</span>
         </label>
       </div>
       <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio2" value="minimal">
-          Min payment
+          Pago M&iacute;nimo
           <span class="pull-right amount">{{currentAccount.balance.min_payment | currency}}</span>
         </label>
       </div>
       <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio3" value="total">
-          Whitout interest
+          Pago sin int&eacute;reses
           <span class="pull-right amount">{{currentAccount.balance.total_payment | currency}}</span>
         </label>
       </div>
@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col-xs-6">
               <input type="radio" name="radio_payment_card_{{currentAccount._account_id}}" id="{{currentAccount._account_id}}_optionRadio4" value="other">
-              Other amount
+              Otra cantidad
             </div>
             <div class="col-xs-6">
               <input type="text" class="form-control input-sm">
@@ -53,35 +53,35 @@
     
   </div>
 <div class="paddingCenter">
-      <button class="btn btn-info btn-block">Card payment</button>
+      <button class="btn btn-info btn-block">Pagar tarjeta</button>
     </div>
     <div class="paddingCenter">
   <div ng-if="currentAccount.account_type == 'SAVINGS' || currentAccount.account_type == 'CHECKS' || currentAccount.account_type == 'DEBIT_CARD'">
     <p>
-    Since {{currentAccount.balance.from | date:'longDate'}}
+    Desde {{currentAccount.balance.from | date:'longDate'}}
     </p>
 
     <div class="amounts-section">
       <p>
-      Available:
+      Disponible:
       <i class="pull-right">
         {{currentAccount.balance.current | currency}}
       </i> </p>
    
     <p>
-    Deposits:
+    Dep&oacute;sitos:
     <i class="pull-right">
       {{currentAccount.balance.deposits | currency}}
     </i>
     </p>
     <p>
-    Payments:
+    Pagos:
     <i class="pull-right">
       {{currentAccount.balance.payments | currency}}
     </i>
     </p>
     <p>
-    Withdrawals:
+    Retiros:
     <i class="pull-right">
       {{currentAccount.balance.withdrawals | currency}}
     </i>
@@ -92,7 +92,7 @@
 
   <div ng-if="currentAccount.account_type == 'TRANSFER'">
     <div class="row date-section text-center">
-      Number: {{currentAccount.number}}
+      N&uacute;mero: {{currentAccount.number}}
     </div>
 
     <div class="amounts-section">

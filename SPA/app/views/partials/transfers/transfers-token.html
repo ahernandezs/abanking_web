@@ -5,7 +5,7 @@
       <div class="submenu-yellow">
         <h5>
           <span class="pull-left"></span>
-          Enter the code that appears on your phone
+          Ingresa el c&oacute;digo que aparece en tu tel&eacute;fono
           <span class="pull-right"></span>
           <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
         </h5>
@@ -31,14 +31,14 @@
       <div class="submenu-yellow">
         <h5>
           <span class="pull-left"></span>
-          Obtaining authorization
+          Obteniendo autorizaci&oacute;n
           <span class="pull-right"></span>
         </h5>
       </div>
 
       <div class="yellow-message">
         <img class="pull-right" src="/images/orange-ajax-loader-graybg.gif">
-        <p>We have sent a request for authorization to your mobile device, please approve it</p>
+        <p>Hemos enviado una solicitud de autorizaci&oacute;n a tu dispositivo m&oacute;vil, por favor apru&eacute;bala</p>
       </div>
     </div>
 
@@ -53,19 +53,19 @@
     <div class="paddingCenter">
       <div class="styleSelect">
         <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
-        <option data-icon="icon-calendar" value="">Select an account</option>
+        <option data-icon="icon-calendar" value="">Seleciona una cuenta</option>
       </select>
       </div>
     </div>
     <div class="paddingCenter">
-        <input type="text" class="fAmount" placeholder="Amount" ng-model="transfer.amount">
+        <input type="text" class="fAmount" placeholder="Cantidad" ng-model="transfer.amount">
     </div>
     <div class="paddingCenter">
-      <span>Payment day:</span>
-      <input type="text" class="pull-right" placeholder="Date" ng-model="transfer.date">
+      <span>D&iacute;a de pago:</span>
+      <input type="text" class="pull-right" placeholder="Fecha" ng-model="transfer.date">
     </div>
     <div class="paddingCenter">
-        <input type="checkbox" ng-model="transfer.sendmail"/> Notify the recipient
+        <input type="checkbox" ng-model="transfer.sendmail"/> Notificar al destinatario
     </div>
     <div class="paddingCenter" g-show="transfer.sendmail">
       <textarea class="form-control input-sm" rows="4" ng-model="transfer.message">

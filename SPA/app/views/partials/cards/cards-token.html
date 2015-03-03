@@ -4,14 +4,14 @@
     <div class="submenu-yellow">
       <h5>
         <span class="pull-left"></span>
-        Phone not available
+        Tel&eacute;fono no disponible
         <span class="pull-right"></span>
         <!--<span ng-click="close()" class="glyphicon glyphicon-remove pull-right close-button"></span>-->
       </h5>
     </div>
 
     <div class="yellow-message">
-      <p>Enter manually your dinamic key</p>
+      <p>Ingresa manualmente tu llave din&aacute;mica</p>
       <div class="row">
         <div class="col-md-8">
           <div class="input-group">
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-md-4 pull-right">
-          <button ng-click="applyCardPayment()" type="button" class="btn btn-info">Confirm</button>
+          <button ng-click="applyCardPayment()" type="button" class="btn btn-info">Confirmar</button>
         </div>
       </div>
 
@@ -31,20 +31,20 @@
     <div class="submenu-yellow">
       <h5>
         <span class="pull-left"></span>
-       Obtaining token
+       Obteniendo token
         <span class="pull-right"></span>
       </h5>
     </div>
 
     <div class="yellow-message">
       <img class="pull-right" src="/images/orange-ajax-loader-graybg.gif">
-      <p>We have sent a request for authorization to your mobile device, please approve</p>
+      <p>Hemos enviado una solicitud de autorizaci&oacute;n a tu dispositivo m&oacute;vil, por favor apru&eacute;bala</p>
     </div>
   </div>
   <div class="paddingCenter">
       <div class="styleSelect">
         <select class="form-control" ng-model="card.current" ng-options="a.name + ' ' + a.lastdigits for a in cards" ng-change="updateCard()">
-      <option value="">Select a card</option>
+      <option value="">Selecciona una tarjeta</option>
     </select>
       </div>
   </div>
@@ -60,14 +60,14 @@
       <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio2" value="minimal" checked>
-          Min payment
+          Pago m&iacute;nimo
           <span class="pull-right amount">$500.00</span>
         </label>
       </div>
       <div class="radio overflowH">
         <label>
           <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio3" value="total">
-          Without interest
+          Pago sin int&eacute;reses
           <span class="pull-right amount">$4,500.00</span>
         </label>
       </div>
@@ -76,7 +76,7 @@
           <div class="row">
             <div class="col-xs-6">
               <input type="radio" name="radio_payment_card_{{account._account_id}}" id="{{account._account_id}}_optionRadio4" value="other">
-              Other amount
+              Otra cantidad
             </div>
             <div class="col-xs-6">
               <input type="text" class="form-control input-sm">
@@ -88,11 +88,11 @@
 
   </div>
   <div class="paddingCenter">
-    <span>Payment day:</span>
+    <span>D&iacute;a de pago:</span>
     <input type="text" class="pull-right" placeholder="Today" value="19/02/2014">
   </div>
 <div class="paddingCenter">
-  <input type="checkbox"/> Save as frequent
+  <input type="checkbox"/> Guardar como frecuente
 </div>
 <!--
   <div class="side-block">

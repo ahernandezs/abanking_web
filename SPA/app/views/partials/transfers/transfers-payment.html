@@ -1,8 +1,8 @@
 <div class="right-section">
 
   <div class="submenu-blue">
-    <h5>Transfers
-      <button ng-click="close()" class="pull-right">Close</button>
+    <h5>Transferencias
+      <button ng-click="close()" class="pull-right">Cerrar</button>
     </h5>
   </div>
 
@@ -17,7 +17,7 @@
   <div class="paddingCenter">
     <div class="styleSelect">
     <select class="form-control" ng-model="beneficiary.current" ng-options="a.beneficiary_name + ',  ' + a.issuer_name + ' ***' + a.number for a in beneficiaries" ng-change="updateTransfer()">
-      <option data-icon="icon-calendar" value="">Select an account</option>
+      <option data-icon="icon-calendar" value="">Selecciona una cuenta</option>
     </select>
   </div>
   </div>
@@ -39,11 +39,11 @@
     </div>
   </div>-->
   <div class="paddingCenter">
-      <input type="text" class="fAmount" placeholder="Amount" ng-model="transfer.amount">
+      <input type="text" class="fAmount" placeholder="Cantidad" ng-model="transfer.amount">
   </div>
   <div class="paddingCenter">
-      <span>Payment day:</span>
-      <input type="text" class="pull-right" placeholder="Today" ng-model="transfer.date">
+      <span>D&iacute;a de pago:</span>
+      <input type="text" class="pull-right" placeholder="Hoy" ng-model="transfer.date">
   </div>
 
 <!--
@@ -68,15 +68,15 @@
     </div>
   </div>-->
   <div class="paddingCenter">
-            <input type="checkbox" ng-model="transfer.sendmail"/> Notify the recipient
+            <input type="checkbox" ng-model="transfer.sendmail"/> Notificar al destinatario
     </div>
   </div>
   <div class="paddingCenter" ng-show="transfer.sendmail">
-      <textarea class="form-control input-sm" rows="4" ng-model="transfer.message" placeholder="Message"></textarea>
+      <textarea class="form-control input-sm" rows="4" ng-model="transfer.message" placeholder="Mensaje"></textarea>
   </div>
 
   <!--<button ng-click="close()" type="submit" class="btn btn-default btn-block">Cancelar</button>-->
 <div class="paddingCenter">
-  <button ng-click="showTransferPaymentToken()" type="submit" class="btn btn-success btn-block">Pay</button>
+  <button ng-click="showTransferPaymentToken()" type="submit" class="btn btn-success btn-block">Pagar</button>
 </div>
 </div>

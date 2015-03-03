@@ -1,17 +1,17 @@
 <div class="right-section">
 
   <div class="submenu-blue">
-    <h5>Card payment    
+    <h5>Pagar tarjeta
     <div class="pull-right">
-      <button type="submit" ng-click="showAddCard()">Add a card</button>
-      <button ng-click="close()">Close</button>
+      <button type="submit" ng-click="showAddCard()">Agregar tarjeta</button>
+      <button ng-click="close()">Cerrar</button>
     </div></h5>
   </div>
   
   <div class="paddingCenter">
     <div class="styleSelect">
       <select class="form-control" ng-model="card.current" ng-options="a.name + ' ' + a.lastdigits for a in cards" ng-change="updateCard()">
-    <option data-icon="icon-calendar" value="">Select a card</option>
+    <option data-icon="icon-calendar" value="">Selecciona una tarjeta</option>
   </select>
     </div>
   </div>
