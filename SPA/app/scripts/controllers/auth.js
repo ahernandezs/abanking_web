@@ -29,7 +29,7 @@ angular.module('spaApp')
     $http({
       url: $scope.restAPIBaseUrl+'/login',
       method: 'POST',
-      data: JSON.stringify({'username':$scope.username, 'password':$scope.password,'access_media': 'SPA'})
+      data: JSON.stringify({'user_login':$scope.username, 'password':$scope.password,'client_application_id': 'SPA'})
     }).
       success(function(data, status, headers) {
       //get the session token from the response and store it in rootScope
